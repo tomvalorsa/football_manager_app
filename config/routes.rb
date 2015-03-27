@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root :to => 'pages#home'
 
-  resources :users
+  resources :users, :leagues, :teams, :players, :tactics, :matches
 
   # Backbone SPA home.
   get '/dashboard' => 'pages#index'

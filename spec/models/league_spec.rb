@@ -8,6 +8,7 @@
 #  size       :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  emblem     :text
 #
 
 require 'rails_helper'

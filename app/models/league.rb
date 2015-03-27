@@ -8,6 +8,7 @@
 #  size       :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  emblem     :text
 #
 
 class League < ActiveRecord::Base

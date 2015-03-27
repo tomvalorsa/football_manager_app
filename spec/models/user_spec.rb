@@ -9,6 +9,7 @@
 #  is_admin        :boolean          default("false")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  profile_image   :text
 #
 
 require 'rails_helper'
