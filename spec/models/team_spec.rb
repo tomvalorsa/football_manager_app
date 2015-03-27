@@ -4,6 +4,7 @@
 #
 #  id              :integer          not null, primary key
 #  league_id       :integer
+#  user_id         :integer
 #  name            :string
 #  overall_rating  :integer
 #  league_position :integer
