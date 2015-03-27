@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: leagues
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  nation     :string
+#  size       :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe League, type: :model do
