@@ -14,4 +14,10 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require models/user
+//= require models/league
+//= require models/team
+//= require models/player
+//= require models/tactic
+//= require models/match
 //= require_tree .
