@@ -22,3 +22,11 @@ p2 = Player.create(:team_id => t2.id, :first_name => 'Wayne', :last_name => 'Roo
 tac1 = Tactic.create(:team_id => t1.id, :formation => '4-4-2', :tempo => 'balanced', :playing_style => 'balanced', :passing => 'balanced', :tackling => 'balanced')
 
 tac2 = Tactic.create(:team_id => t2.id, :formation => '4-4-2', :tempo => 'balanced', :playing_style => 'balanced', :passing => 'balanced', :tackling => 'balanced')
+
+m1 = Match.create(:league_id => l1.id, :home_team => t1.name, :away_team => t2.name)
+m2 = Match.create(:league_id => l1.id, :home_team => t2.name, :away_team => t1.name)
+
+t1.matches << m1
+t1.matches << m2
+t2.matches << m1
+t2.matches << m2
