@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    render :json => @users
   end
 
   def new
@@ -15,7 +16,26 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
 
+  def show
+    @user = User.find params[:id]
+  end
+
+  def edit
+    @user = User.find params[:id]
+  end
+
+  def update
+    @user = User.find params[:id]
+    @user.update user_params
+    # redirect_to user_path
+  end
+
+  def destroy
+    @user = User.find params[:id]
+    @user.destory
+    # redirect_to ...
   end
 
   private
