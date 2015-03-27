@@ -28,17 +28,17 @@ ActiveRecord::Schema.define(version: 20150327055125) do
     t.integer  "league_id"
     t.string   "home_team"
     t.string   "away_team"
-    t.integer  "home_goals"
-    t.integer  "away_goals"
+    t.integer  "home_goals",      default: 0
+    t.integer  "away_goals",      default: 0
     t.string   "home_result"
     t.string   "away_result"
-    t.integer  "home_fouls"
-    t.integer  "away_fouls"
-    t.integer  "home_possession"
-    t.integer  "away_possession"
+    t.integer  "home_fouls",      default: 0
+    t.integer  "away_fouls",      default: 0
+    t.integer  "home_possession", default: 0
+    t.integer  "away_possession", default: 0
     t.string   "man_of_match"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "matches_teams", force: :cascade do |t|
@@ -56,11 +56,11 @@ ActiveRecord::Schema.define(version: 20150327055125) do
     t.integer  "defence_rating"
     t.integer  "value"
     t.string   "position"
-    t.integer  "goals"
-    t.integer  "assists"
-    t.integer  "yellow_cards"
-    t.integer  "red_cards"
-    t.integer  "mom_count"
+    t.integer  "goals",          default: 0
+    t.integer  "assists",        default: 0
+    t.integer  "yellow_cards",   default: 0
+    t.integer  "red_cards",      default: 0
+    t.integer  "mom_count",      default: 0
     t.boolean  "injured",        default: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -68,13 +68,13 @@ ActiveRecord::Schema.define(version: 20150327055125) do
 
   create_table "tactics", force: :cascade do |t|
     t.integer  "team_id"
-    t.string   "formation"
-    t.string   "tempo"
-    t.string   "playing_style"
-    t.string   "passing"
-    t.string   "tackling"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "formation",     default: "4-4-2"
+    t.string   "tempo",         default: "balanced"
+    t.string   "playing_style", default: "balanced"
+    t.string   "passing",       default: "balanced"
+    t.string   "tackling",      default: "balanced"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "teams", force: :cascade do |t|
@@ -85,9 +85,9 @@ ActiveRecord::Schema.define(version: 20150327055125) do
     t.integer  "league_position"
     t.integer  "total_value"
     t.integer  "bank_balance"
-    t.integer  "form_rating"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "form_rating",     default: 50
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "users", force: :cascade do |t|
