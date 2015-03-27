@@ -1,2 +1,6 @@
 <h1><%= @current_user.username %>, you have successfully logged in!</h1>
 <%= link_to 'Log out', login_path, :method => 'delete' %>
+
+<% if @current_user.is_admin? %>
+  <p>you're the admin user, congratulations!</p>
+<% end %>
