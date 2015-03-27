@@ -9,3 +9,59 @@
 
 <div id="main"></div>
 
+<!-- Templates for generating the setup process for new users -->
+
+<script type="x-underscore-template" id="pickLeagueTemplate">
+  <h1>Leagues:</h1>
+  <div id="leagues"></div>
+</script>
+
+<script type="x-underscore-template" id="pickTeamTemplate">
+  <h1>Teams:</h1>
+  <div id="teams"></div>
+</script>
+
+<script type="x-underscore-template" id="generatingLeagueTemplate">
+  <div>(put the loading animation here if there is time)</div>
+</script>
+
+
+<!-- Dashboard template -->
+
+<script type="x-underscore-template" id="dashboardViewTemplate">
+  <div id="team-info">
+    <img src="{{ team.emblem }}" alt="" id="team-emblem">
+    <h2>{{ team.name }}</h2>
+    <h4>Bank balance: {{ team.bank_balance }}</h4>
+    <h4>Total value: {{ team.total_value }}</h4>
+  </div>
+
+  <div id="next-game-info">
+    <h3>(put the opponent's name here)</h3>
+    <h4>(opponent's league position)</h4>
+    <h4>(match date/countdown)</h4>
+    <img src="(opponent's team crest)" alt="">
+  </div>
+
+  <div id="finances">
+    <div id="finance-chart">
+      <!-- add in the d3 for finances here -->
+    </div>
+  </div>
+
+  <div id="form">
+    <!-- form stuff to go here -->
+  </div>
+
+  <div id="team-rating">
+    <div id="rating-disc"></div>
+    <div id="hisorical-rating-graph"></div>
+  </div>
+
+  <div id="team-stats">
+    <h3>(top scorer with icon here)</h3>
+    <h3>(most assists with icon here)</h3>
+    <h3>(most yellow cards with icon here)</h3>
+    <h3>(most red cards with icon here)</h3>
+  </div>
+</script>
