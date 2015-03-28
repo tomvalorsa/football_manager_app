@@ -27,6 +27,11 @@ app.AddLeagueView = Backbone.View.extend({
     });
 
     league.save().done(function() {
+      console.log('League created') ;
+      createTeams();
+    })
+
+    var createTeams = function() {
       // debugger;
       var leagueID = league.get('id');
       var leagueSize = league.get('size');
@@ -48,21 +53,22 @@ app.AddLeagueView = Backbone.View.extend({
         // debugger;
 
         team.save().done(function() {
-          debugger;
-          // Looking for an id here, or a team var.
-          console.log('Team created', team.get('name'));
+          console.log('Team created');
           // Create players for that team...
+          console.log(team.id);
+          createPlayers();
+
 
           // Create tactic for that team...
 
         });
       }
-    }).done(function() {
-      console.log('league created');
+    }.done(function() {
       app.router.navigate('', true);
     });
-  },
-  createTeams: function(league) {
 
+    var createPlayers = function() {
+      debugger;
+    }
   }
 });
