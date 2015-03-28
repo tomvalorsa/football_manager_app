@@ -16,7 +16,7 @@ class LeaguesController < ApplicationController
       :nation => params[:nation],
       :size => params[:size]
     })
-
+    # When a league is created, make the teams:
     @league.size.times do |i|
       team = Team.create({
         :league_id => @league.id,
@@ -33,6 +33,7 @@ class LeaguesController < ApplicationController
       # binding.pry
       # Need an accurate number of players here.
       # Also need to make names, positions and rating dynamic.
+      # Create the players for each team:
       16.times do |i|
         player = Player.create({
           :team_id => team.id,
@@ -46,7 +47,13 @@ class LeaguesController < ApplicationController
           :position => 'MF'
         })
       end
+
+      tactic = Tactic.create({
+        :team_id => team.id
+      })
     end
+
+    # Then make all of the matches here...sheet.
 
     render :json => @league
   end
