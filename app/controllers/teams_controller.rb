@@ -9,7 +9,17 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.create team_params
+    @team = Team.create({
+      :league_id => params[:league_id],
+      :user_id => params[:user_id],
+      :name => params[:name],
+      :overall_rating => params[:overall_rating],
+      :league_position => params[:league_position],
+      :total_value => params[:total_value],
+      :bank_balance => params[:bank_balance],
+      :form_rating => params[:form_rating],
+      :emblem => params[:emblem]
+    })
     # So console stops complaining about not having a template.
     # Boo hoo, console.
     render :json => @team
@@ -35,6 +45,6 @@ class TeamsController < ApplicationController
 
   private
   def team_params
-    params.require(:team).permit(:league_id, :user_id, :name, :overall_rating, :league_position, :total_value, :bank_balance, :form_rating)
+    params.require(:team).permit(:league_id, :user_id, :name, :overall_rating, :league_position, :total_value, :bank_balance, :form_rating, :emblem)
   end
 end
