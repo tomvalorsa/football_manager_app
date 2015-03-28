@@ -23,8 +23,8 @@ tac1 = Tactic.create(:team_id => t1.id, :formation => '4-4-2', :tempo => 'balanc
 
 tac2 = Tactic.create(:team_id => t2.id, :formation => '4-4-2', :tempo => 'balanced', :playing_style => 'balanced', :passing => 'balanced', :tackling => 'balanced')
 
-m1 = Match.create(:league_id => l1.id, :home_team => t1.name, :away_team => t2.name)
-m2 = Match.create(:league_id => l1.id, :home_team => t2.name, :away_team => t1.name)
+m1 = Match.create(:league_id => l1.id, :home_team_id => t1.id, :away_team_id => t2.id)
+m2 = Match.create(:league_id => l1.id, :home_team_id => t2.id, :away_team_id => t1.id)
 
 t1.matches << m1
 t1.matches << m2

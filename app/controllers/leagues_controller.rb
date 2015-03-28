@@ -54,6 +54,18 @@ class LeaguesController < ApplicationController
     end
 
     # Then make all of the matches here...sheet.
+    matches_per_team = (@league.size * 2) - 2
+    matches_per_league = matches_per_team * (@league.size / 2)
+
+    matches_per_league.times do |i|
+      match = Match.create({
+        :league_id => @league.id
+      })
+    end
+
+    # Then order them with sql command like in whisper.
+    # Then loop through and assign ids etc.
+    # Might need to change column types for home_team and away_team to ints so I can just store ids.
 
     render :json => @league
   end

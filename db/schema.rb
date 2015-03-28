@@ -27,19 +27,19 @@ ActiveRecord::Schema.define(version: 20150327100953) do
 
   create_table "matches", force: :cascade do |t|
     t.integer  "league_id"
-    t.string   "home_team"
-    t.string   "away_team"
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
     t.integer  "home_goals",      default: 0
     t.integer  "away_goals",      default: 0
-    t.string   "home_result"
-    t.string   "away_result"
+    t.string   "home_result",     default: ""
+    t.string   "away_result",     default: ""
     t.integer  "home_fouls",      default: 0
     t.integer  "away_fouls",      default: 0
     t.integer  "home_possession", default: 0
     t.integer  "away_possession", default: 0
-    t.string   "man_of_match"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "man_of_match",    default: ""
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "matches_teams", force: :cascade do |t|
