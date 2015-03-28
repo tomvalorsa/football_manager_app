@@ -3,8 +3,8 @@ var app = app || {};
 app.League = Backbone.Model.extend({
   urlRoot: '/leagues',
   defaults: {
-    name: '',
-    nation: '',
+    name: 'league_name',
+    nation: 'nation_name',
     size: 4,
     emblem: '' // Can set a default pic here later.
   }

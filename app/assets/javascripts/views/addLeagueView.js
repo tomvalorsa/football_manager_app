@@ -13,6 +13,7 @@ app.AddLeagueView = Backbone.View.extend({
   },
   createLeague: function(e) {
     e.preventDefault();
+    // Need to put some conditionals or pipes in here to cover defaults.
     var name = $('#league-name').val();
     var emblem = $('#league-emblem').val();
     var nation = $('#league-nation').val();
@@ -27,10 +28,11 @@ app.AddLeagueView = Backbone.View.extend({
 
     league.save().done(function() {
       console.log('league created');
-      // When this is done it should create the teams
-        // this should create a tactic
-        // and the players for that team
-      // this should then create the match objects
+      app.leagues.fetch().done(function() {
+        app.router.navigate('', true);
+      });
     });
+
+
   }
 });

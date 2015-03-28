@@ -1,4 +1,5 @@
 // This is currently being set to the create/choose a league screen.
+// Maybe rename this to setupView.
 
 var app = app || {};
 
@@ -8,6 +9,7 @@ app.AppView = Backbone.View.extend({
     'click #add-league': 'leagueCreation'
   },
   render: function() {
+    this.$el.empty();
     console.log('Rendering AppView...');
     var html = $('#pickLeague-template').html();
     this.$el.html(html);
