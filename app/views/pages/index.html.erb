@@ -1,34 +1,59 @@
-<h1><%= @current_user.username %>, you have successfully logged in!</h1>
+<h1>User: <%= @current_user.username %></h1>
 <%= link_to 'Log out', login_path, :method => 'delete' %>
 
 <% if @current_user.is_admin? %>
   <p>you're the admin user, congratulations!</p>
 <% end %>
 
-<h2>This is the dashboard view for the SPA</h2>
+<hr>
 
 <div id="main"></div>
 
 <!-- Templates for generating the setup process for new users -->
 
-<script type="x-underscore-template" id="pickLeagueTemplate">
+<script type="x-underscore-template" id="pickLeague-template">
   <h1>Leagues:</h1>
   <div id="leagues"></div>
+  <button id="add-league">Add new league</button>
 </script>
 
-<script type="x-underscore-template" id="pickTeamTemplate">
+<script type="x-underscore-template" id="leagueListView-template">
+  <h2>{{ name }}</h2>
+  <h3>{{ nation }}</h3>
+  <h3>Teams: {{ size }}</h3>
+</script>
+
+<script type="x-underscore-template" id="addLeagueView-template">
+  <form>
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="league-name">
+
+    <label for="emblem">Emblem:</label>
+    <input type="url" name="emblem" id="league-emblem">
+
+    <label for="nation">Nation:</label>
+    <input type="text" name="nation" id="league-nation">
+
+    <label for="size">No. of teams:</label>
+    <input type="number" name="size" id="league-size">
+
+    <button id="submit-league-form">Create league</button>
+  </form>
+</script>
+
+<script type="x-underscore-template" id="pickTeam-template">
   <h1>Teams:</h1>
   <div id="teams"></div>
 </script>
 
-<script type="x-underscore-template" id="generatingLeagueTemplate">
+<script type="x-underscore-template" id="generatingLeague-template">
   <div>(put the loading animation here if there is time)</div>
 </script>
 
 
 <!-- Dashboard template -->
 
-<script type="x-underscore-template" id="dashboardViewTemplate">
+<script type="x-underscore-template" id="dashboardView-template">
   <div id="team-info">
     <img src="{{ team.emblem }}" alt="" id="team-emblem">
     <h2>{{ team.name }}</h2>

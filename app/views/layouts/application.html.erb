@@ -10,5 +10,11 @@
 
 <%= yield %>
 
+<!-- in application.html.erb (or elsewhere) -->
+<script>
+var app = app || {};
+app.currentUser = <%== @current_user.to_json %>;
+</script>
+
 </body>
 </html>

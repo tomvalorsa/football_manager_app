@@ -9,7 +9,14 @@ class LeaguesController < ApplicationController
   end
 
   def create
-    @league = League.create league_params
+    # binding.pry
+    @league = League.create({
+      :name => params[:name],
+      :emblem => params[:emblem],
+      :nation => params[:nation],
+      :size => params[:size]
+    })
+    render :json => @league
   end
 
   def show
@@ -34,6 +41,6 @@ class LeaguesController < ApplicationController
 
   private
   def league_params
-    params.require(:league).permit(:name, :nation, :size)
+    params.require(:league).permit(:name, :nation, :size, :emblem)
   end
 end

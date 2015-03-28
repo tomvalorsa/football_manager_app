@@ -9,13 +9,16 @@ app.matches = new app.Matches();
 
 $(document).ready(function() {
 
+
   // Replace <%= erb style %> with {{ Handlebars style }}
   // to prevent a conflict with Rails views.
   _.templateSettings = {
     interpolate: /\{\{(.+?)\}\}/g
   };
 
-  app.router = new app.Router();
-  Backbone.history.start();
+  app.leagues.fetch().done(function() {
+    app.router = new app.Router();
+    Backbone.history.start({pushState: false});
+  });
 
 });

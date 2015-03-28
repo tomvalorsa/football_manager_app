@@ -3,5 +3,6 @@ class PagesController < ApplicationController
   end
 
   def index
+    # binding.pry
   end
 end
