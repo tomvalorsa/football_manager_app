@@ -48,7 +48,7 @@ app.AddLeagueView = Backbone.View.extend({
         });
 
         team.save().done(function() {
-          console.log('Team created: ', team.get('name'));
+          console.log('Team created');
         });
       }
     });

@@ -10,6 +10,9 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.create team_params
+    # So console stops complaining about not having a template.
+    # Boo hoo, console.
+    render :json => @team
   end
 
   def show
