@@ -1,7 +1,7 @@
 var app = app || {};
 
 app.LeagueListView = Backbone.View.extend({
-  // We want a <div> and that's the default, so no need to specify tag name.
+  tagName: 'div class="league"',
   render: function() {
     var leagueListViewTemplate = $('#leagueListView-template').html();
     var leagueListViewHTML = _.template(leagueListViewTemplate);

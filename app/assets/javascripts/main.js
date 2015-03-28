@@ -17,6 +17,11 @@ $(document).ready(function() {
   };
 
   app.leagues.fetch().done(function() {
+    app.users.fetch();
+    app.teams.fetch();
+    app.players.fetch();
+    app.tactics.fetch();
+    app.matches.fetch();
     app.router = new app.Router();
     Backbone.history.start({pushState: false});
   });
