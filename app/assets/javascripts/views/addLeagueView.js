@@ -28,47 +28,8 @@ app.AddLeagueView = Backbone.View.extend({
 
     league.save().done(function() {
       console.log('League created') ;
-      createTeams();
+      app.router.navigate('', true);
     })
 
-    var createTeams = function() {
-      // debugger;
-      var leagueID = league.get('id');
-      var leagueSize = league.get('size');
-
-      for (var i = 0; i < leagueSize; i++) {
-        // Create the right amount of teams.
-        var team = new app.Team({
-          league_id: leagueID,
-          user_id: null,
-          name: ('Team ' + (i + 1)),
-          overall_rating: null,
-          league_position: null,
-          total_value: 0,
-          bank_balance: 30000000,
-          form_rating: 50,
-          emblem: ''
-        });
-
-        // debugger;
-
-        team.save().done(function() {
-          console.log('Team created');
-          // Create players for that team...
-          console.log(team.id);
-          createPlayers();
-
-
-          // Create tactic for that team...
-
-        });
-      }
-    }.done(function() {
-      app.router.navigate('', true);
-    });
-
-    var createPlayers = function() {
-      debugger;
-    }
   }
 });
