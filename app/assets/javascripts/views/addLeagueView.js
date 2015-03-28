@@ -28,9 +28,7 @@ app.AddLeagueView = Backbone.View.extend({
 
     league.save().done(function() {
       console.log('league created');
-      app.leagues.fetch().done(function() {
-        app.router.navigate('', true);
-      });
+      app.router.navigate('', true);
     });
 
 
