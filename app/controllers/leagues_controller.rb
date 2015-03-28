@@ -64,8 +64,18 @@ class LeaguesController < ApplicationController
     end
 
     # Then order them with sql command like in whisper.
+    @matches = @league.matches.order(:id)
+
+    # Need to loop though teams array and zip together home and away fixtures.
+    # Then they can be passed in to the loop below.
+
     # Then loop through and assign ids etc.
-    # Might need to change column types for home_team and away_team to ints so I can just store ids.
+    @matches.length.times do |i|
+
+
+
+    end
+
 
     render :json => @league
   end
