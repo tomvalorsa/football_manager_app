@@ -63,11 +63,8 @@ class LeaguesController < ApplicationController
       })
     end
 
-    # Then order them with sql command like in whisper.
-    @matches = @league.matches.order(:id)
-
     # Need to loop though teams array and zip together home and away fixtures.
-    @teams= @league.teams.order(:id).to_a
+    @teams = @league.teams.order(:id).to_a
     num_team_matches = (@league.size * 2) - 2
     num_matches = num_team_matches * (@league.size / 2)
     num_teams = @teams.length
@@ -89,16 +86,21 @@ class LeaguesController < ApplicationController
 
     away_team_array.flatten!
 
+    # This is an array containing pairs of team objects, each pair represents a fixture for the season.
     fixture_pairings = home_team_array.zip(away_team_array)
+
     # Then they can be passed in to the loop below.
-    binding.pry
     # Then loop through and assign ids etc.
-    @matches.length.times do |i|
+    @matches = @league.matches.order(:id)
 
+    @matches.each_with_index do |match, i|
 
+      match.home_team_id = fixture_pairings[i][0].id
+      match.away_team_id = fixture_pairings[i][1].id
 
     end
 
+    binding.pry
 
     render :json => @league
   end
