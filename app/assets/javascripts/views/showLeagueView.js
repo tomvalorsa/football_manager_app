@@ -14,6 +14,8 @@ app.ShowLeagueView = Backbone.View.extend({
     // Copy this from appView.js
     var that = this;
 
+    // $.get('/leagues')
+
     // debugger;
 
     app.teams.fetch().done(function() {

@@ -1,4 +1,9 @@
 <h1>User: <%= @current_user.username %></h1>
+
+<% if @current_user.team %>
+  <h2><%= @current_user.team.name %></h2>
+<% end %>
+
 <%= link_to 'Log out', login_path, :method => 'delete' %>
 
 <% if @current_user.is_admin? %>
@@ -74,7 +79,7 @@
 <script type="x-underscore-template" id="dashboardView-template">
   <div id="team-info">
     <img src="{{ team.emblem }}" alt="" id="team-emblem">
-    <h2>{{ team.name }}</h2>
+    <h2 id="user-team-name"></h2>
     <h4>Bank balance: {{ team.bank_balance }}</h4>
     <h4>Total value: {{ team.total_value }}</h4>
   </div>

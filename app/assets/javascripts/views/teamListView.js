@@ -20,6 +20,7 @@ app.TeamListView = Backbone.View.extend({
     var teamChoice = confirm('Are you sure?');
     if (teamChoice) {
       this.model.set('user_id', app.currentUser.id);
+      this.model.save();
       console.log(this.model);
     }
     app.router.navigate('home', true);
