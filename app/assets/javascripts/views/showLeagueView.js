@@ -9,11 +9,15 @@ app.ShowLeagueView = Backbone.View.extend({
     // Add in some template html here.
     // This should just be a page structure, so we can render in the relvant teams.
 
-    // Fetch the leagues first, then put this in a .done()
+    // Fetch the teams first, then put this in a .done()
     // Then get the collection rendering into another template.
     // Copy this from appView.js
     var that = this;
+
+    // debugger;
+
     app.teams.fetch().done(function() {
+      // Need to somehow pass in the right league here.
       var html = $('#showLeague-template').html();
       that.$el.html(html);
       // debugger;
