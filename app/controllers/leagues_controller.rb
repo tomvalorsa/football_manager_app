@@ -94,10 +94,10 @@ class LeaguesController < ApplicationController
     @matches = @league.matches.order(:id)
 
     @matches.each_with_index do |match, i|
-
-      match.home_team_id = fixture_pairings[i][0].id
-      match.away_team_id = fixture_pairings[i][1].id
-
+      match.update(
+        :home_team_id => fixture_pairings[i][0].id,
+        :away_team_id => fixture_pairings[i][1].id
+      )
     end
 
     binding.pry
