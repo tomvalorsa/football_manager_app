@@ -34,17 +34,30 @@ class LeaguesController < ApplicationController
       # Need an accurate number of players here.
       # Also need to make names, positions and rating dynamic.
       # Create the players for each team:
-      16.times do |i|
+      18.times do |i|
+        if i < 2
+          position = 'GK'
+        elsif i < 8
+          position = 'DF'
+        elsif i < 14
+          position = 'MF'
+        else
+          position = 'FW'
+        end
+
+        first_array = ['Andrea', 'Francesco', 'Alessandro', 'Cristiano', 'Domenico', 'Mauro', 'Tommaso', 'Damiano']
+        last_array = ['Pirlo', 'Totti', 'Del Piero', 'Doni', 'Barzagli', 'Icardi', 'Valorsa', 'Tomassi']
+
         player = Player.create({
           :team_id => team.id,
-          :first_name => 'Andrea',
-          :last_name => 'Pirlo',
+          :first_name => first_array.sample,
+          :last_name => last_array.sample,
           :age => 24,
           :nationality => 'Italian',
           :attack_rating => 91,
           :defence_rating => 87,
           :value => 40_000_000,
-          :position => 'MF'
+          :position => position
         })
       end
 
