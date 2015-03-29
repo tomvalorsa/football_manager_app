@@ -86,10 +86,10 @@ you can see the data. -->
 <% if @current_user.team %>
 <script type="x-underscore-template" id="dashHomeView-template">
   <div id="team-info">
-    <img src="{{ team.emblem }}" alt="" id="team-emblem">
-    <h2 id="user-team-name"></h2>
-    <h4>Bank balance: <%= @current_user.team.bank_balance %></h4>
-    <h4>Total value: <%= @current_user.team.total_value %></h4>
+    <img src="{{ emblem }}" alt="" id="team-emblem">
+    <h2 id="user-team-name">{{ name }}</h2>
+    <h4>Bank balance: {{ bank_balance }}</h4>
+    <h4>Total value: {{ total_value }}</h4>
   </div>
 
   <div id="next-game-info">
@@ -126,8 +126,9 @@ you can see the data. -->
 <script type="x-underscore-template" id="dashTeamView-template">
   <div id="info-div">
     <img src="(the team's emblem)" alt="">
-    <h1><%= @current_user.team.name %></h1>
-    <h2><%= @current_user.team.league_position %>th in <%= @current_user.team.league.name %></h2>
+    // Make this a template for the team model.
+    <h1>{{ name }}</h1>
+    <h2>{{ league_position }}th in <span id="league-name"></span></h2>
   </div>
 
   <div id="tactics-settings">
@@ -162,33 +163,39 @@ you can see the data. -->
     </select>
   </div>
 
+  // Make this just div#players and then make a new template with a table to pass the table rows in.
   <div id="players">
     <table>
       <colgroup span="4" class="columns"></colgroup>
-      <tr>
-        <th>Name</th>
-        <th>Nationality</th>
-        <th>Position</th>
-        <th>Age</th>
-        <th>Attack</th>
-        <th>Defence</th>
-        <th>Value</th>
-      </tr>
-      <% @current_user.team.players.each do |player| %>
+      <tbody id="player-list">
         <tr>
-          <td><%= player.first_name %> <%= player.last_name %></td>
-          <td><%= player.nationality %></td>
-          <td><%= player.position %></td>
-          <td><%= player.age %></td>
-          <td><%= player.attack_rating %></td>
-          <td><%= player.defence_rating %></td>
-          <td><%= player.value %></td>
+          <th>Name</th>
+          <th>Nationality</th>
+          <th>Position</th>
+          <th>Age</th>
+          <th>Attack</th>
+          <th>Defence</th>
+          <th>Value</th>
         </tr>
-      <% end %>
+      </tbody>
     </table>
   </div>
 
   <div id="pitch"></div>
+</script>
+
+<!-- Player list template -->
+
+<script type="x-underscore-template" id="playerListView-template">
+  <tr>
+    <td>{{ first_name }} {{ last_name }}</td>
+    <td>{{ nationality }}</td>
+    <td>{{ position }}</td>
+    <td>{{ age }}</td>
+    <td>{{ attack_rating }}</td>
+    <td>{{ defence_rating }}</td>
+    <td>{{ value }}</td>
+  </tr>
 </script>
 
 <!-- Dashboard league template -->

@@ -1,6 +1,10 @@
 class PlayersController < ApplicationController
   def index
-    @players = Player.all
+    if params["team_id"]
+      @players = Player.where(:team_id => params["team_id"])
+    else
+      @players = Player.all
+    end
     render :json => @players
   end
 
