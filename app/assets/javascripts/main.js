@@ -7,8 +7,8 @@ app.players = new app.Players();
 app.tactics = new app.Tactics();
 app.matches = new app.Matches();
 
-$(document).ready(function() {
 
+$(document).ready(function() {
 
   // Replace <%= erb style %> with {{ Handlebars style }}
   // to prevent a conflict with Rails views.
@@ -25,5 +25,26 @@ $(document).ready(function() {
     app.router = new app.Router();
     Backbone.history.start({pushState: false});
   });
+
+  $('#dash-home').click(function(e) {
+    e.preventDefault();
+    app.router.navigate('home', true);
+  });
+
+  $('#dash-team').click(function(e) {
+    e.preventDefault();
+    app.router.navigate('team', true);
+  });
+
+  $('#dash-league').click(function(e) {
+    e.preventDefault();
+    app.router.navigate('home', true);
+  });
+
+  $('#dash-transfers').click(function(e) {
+    e.preventDefault();
+    app.router.navigate('home', true);
+  });
+
 
 });

@@ -2,6 +2,12 @@
 
 <% if @current_user.team %>
   <h2><%= @current_user.team.name %></h2>
+
+  <a href="#" id="dash-home">Dashboard</a>
+  <a href="#" id="dash-team">Team</a>
+  <a href="#" id="dash-league">League</a>
+  <a href="#" id="dash-transfers">Transfers</a>
+
 <% end %>
 
 <%= link_to 'Log out', login_path, :method => 'delete' %>
@@ -74,13 +80,13 @@
 </script>
 
 
-<!-- Dashboard template -->
+<!-- Dashboard home template -->
 
-<script type="x-underscore-template" id="dashboardView-template">
+<script type="x-underscore-template" id="dashHomeView-template">
   <div id="team-info">
     <img src="{{ team.emblem }}" alt="" id="team-emblem">
     <h2 id="user-team-name"></h2>
-    <h4>Bank balance: {{ team.bank_balance }}</h4>
+    <h4>Bank balance: <%= @current_user.team.bank_balance %></h4>
     <h4>Total value: {{ team.total_value }}</h4>
   </div>
 
@@ -113,3 +119,72 @@
     <h3>(most red cards with icon here)</h3>
   </div>
 </script>
+
+<!-- Dashboard team template -->
+<script type="x-underscore-template" id="dashTeamView-template">
+  <div id="info-div">
+    <img src="(the team's emblem)" alt="">
+    <h1><%= @current_user.team.name %></h1>
+    <h2><%= @current_user.team.league_position %>th in <%= @current_user.team.league.name %></h2>
+  </div>
+
+  <div id="tactics-settings">
+    <label for="passing">Passing:</label>
+    <select id="passing">
+      <option value="short">short</option>
+      <option value="balanced">balanced</option>
+      <option value="long">long</option>
+    </select>
+
+    <label for="tackling">Tackling:</label>
+    <select id="tackling">
+      <option value="light">light</option>
+      <option value="balanced">balanced</option>
+      <option value="hard">hard</option>
+    </select>
+
+    <label for="tempo">Tempo:</label>
+    <select id="tempo">
+      <option value="slow">slow</option>
+      <option value="balanced">balanced</option>
+      <option value="fast">fast</option>
+    </select>
+
+    <label for="Formation">Formation:</label>
+    <select id="formation">
+      <option value="4-4-2">4-4-2</option>
+      <option value="4-3-3">4-3-3</option>
+      <option value="4-5-1">4-5-1</option>
+      <option value="4-1-2-1-2">4-1-2-1-2</option>
+      <option value="4-1-4-1">4-1-4-1</option>
+    </select>
+  </div>
+
+  <div id="players">
+    <table>
+      <colgroup span="4" class="columns"></colgroup>
+      <tr>
+        <th>Name</th>
+        <th>Nationality</th>
+        <th>Position</th>
+        <th>Age</th>
+        <th>Attack</th>
+        <th>Defence</th>
+        <th>Value</th>
+      </tr>
+      <% @current_user.team.players.each do |player| %>
+        <tr>
+          <td><%= player.first_name %> <%= player.last_name %></td>
+          <td><%= player.nationality %></td>
+          <td><%= player.position %></td>
+          <td><%= player.age %></td>
+          <td><%= player.attack_rating %></td>
+          <td><%= player.defence_rating %></td>
+          <td><%= player.value %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</script>
+
+

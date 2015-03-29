@@ -1,12 +1,12 @@
 var app = app || {};
 
-app.MainDashboardView = Backbone.View.extend({
+app.DashHomeView = Backbone.View.extend({
   el: '#main',
   render: function() {
     this.$el.empty();
     console.log('This is where the main dashboard should go');
 
-    var html = $('#dashboardView-template').html();
+    var html = $('#dashHomeView-template').html();
     this.$el.html(html);
 
     // This does the job but it's shitty. Need to somehow feed the user's team and the league it belongs to
