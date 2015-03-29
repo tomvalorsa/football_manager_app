@@ -90,7 +90,7 @@ class LeaguesController < ApplicationController
     fixture_pairings = home_team_array.zip(away_team_array)
 
     # Then they can be passed in to the loop below.
-    # Then loop through and assign ids etc.
+    # Then loop through update match objects with home and away team ids.
     @matches = @league.matches.order(:id)
 
     @matches.each_with_index do |match, i|
@@ -99,8 +99,6 @@ class LeaguesController < ApplicationController
         :away_team_id => fixture_pairings[i][1].id
       )
     end
-
-    binding.pry
 
     render :json => @league
   end

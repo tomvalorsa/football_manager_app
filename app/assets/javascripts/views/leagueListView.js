@@ -2,6 +2,9 @@ var app = app || {};
 
 app.LeagueListView = Backbone.View.extend({
   tagName: 'div class="league"',
+  events: {
+    'click': 'showLeague'
+  },
   render: function() {
     var leagueListViewTemplate = $('#leagueListView-template').html();
     var leagueListViewHTML = _.template(leagueListViewTemplate);
@@ -11,5 +14,9 @@ app.LeagueListView = Backbone.View.extend({
 
     // Append this view's element to the #posts ul on the page.
     $('#leagues').append(this.$el);
+  },
+  showLeague: function() {
+    console.log('show league view to render');
+    app.router.navigate('leagues/' + this.model.get('id'), true);
   }
 });
