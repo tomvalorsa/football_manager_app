@@ -17,7 +17,7 @@ app.AppView = Backbone.View.extend({
       var html = $('#pickLeague-template').html();
       that.$el.html(html);
 
-
+      // Renders all of the individual leagues into the template above.
       that.collection.each(function(league) {
         var leagueListView = new app.LeagueListView({model: league});
         leagueListView.render();
