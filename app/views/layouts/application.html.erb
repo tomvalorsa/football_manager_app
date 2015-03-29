@@ -8,14 +8,16 @@
 </head>
 <body>
 
-<%= yield %>
+  <%= yield %>
 
-<!-- in application.html.erb (or elsewhere) -->
-<script>
-var app = app || {};
-app.currentUser = <%== @current_user.to_json %>;
-// Can do the same with the current_user's team and league etc.
-</script>
+  <!-- in application.html.erb (or elsewhere) -->
+  <script>
+    var app = app || {};
+    app.currentUser = <%== @current_user.to_json %>;
+    app.userTeam = <%== @current_user.team.to_json %>;
+    app.userLeague = <%== @current_user.team.league.to_json %>;
+    app.userTactic = <%== @current_user.team.tactic.to_json %>;
+  </script>
 
 </body>
 </html>

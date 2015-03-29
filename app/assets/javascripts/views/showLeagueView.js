@@ -14,16 +14,13 @@ app.ShowLeagueView = Backbone.View.extend({
     // Copy this from appView.js
     var that = this;
 
+    // Stores the right league model so we can push it to the template below.
     var leagueModel = app.leagues.fetch({
       data: {
         id: app.currentLeague
       },
       processData: true
-    }).done(function() {
-      // debugger;
     });
-
-    // debugger;
 
     app.teams.fetch({
       data: {
