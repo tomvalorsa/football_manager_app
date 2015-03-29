@@ -4,7 +4,7 @@ app.UserSettingsView = Backbone.View.extend({
   el: '#main',
   events: {
     'click #user-submit': 'updateUser'
-  }
+  },
   render: function() {
     this.$el.empty();
     var html = $('#userSettingsView-template').html();
