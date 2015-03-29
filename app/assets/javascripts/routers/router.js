@@ -17,7 +17,7 @@ app.Router = Backbone.Router.extend({
   },
   renderShowLeagueView: function() {
     console.log('render show league view');
-    var showLeagueView = new app.ShowLeagueView();
+    var showLeagueView = new app.ShowLeagueView({collection: app.teams});
     showLeagueView.render();
   }
 });

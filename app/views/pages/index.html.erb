@@ -43,11 +43,6 @@
   </form>
 </script>
 
-<script type="x-underscore-template" id="pickTeam-template">
-  <h1>Teams:</h1>
-  <div id="teams"></div>
-</script>
-
 <script type="x-underscore-template" id="generatingLeague-template">
   <div>(put the loading animation here if there is time)</div>
 </script>
@@ -61,10 +56,17 @@
   </div>
   <div id="teams"></div>
 
-  <button id="back-to-league-selection"></button>
+  <button id="back-to-league-selection">Back to leagues</button>
 </script>
 
+<script type="x-underscore-template" id="teamListView-template">
 
+    <p>{{ name }}</p>
+    <p>ID: {{ id }}</p>
+    <p>League ID: {{ league_id }}</p>
+    <p>{{ bank_balance }}</p>
+
+</script>
 
 
 <!-- Dashboard template -->
