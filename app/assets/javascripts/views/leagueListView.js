@@ -17,6 +17,7 @@ app.LeagueListView = Backbone.View.extend({
   },
   showLeague: function() {
     console.log('show league view to render');
-    app.router.navigate('leagues/' + this.model.get('id'), true);
+    app.currentLeague = this.model.get('id');
+    app.router.navigate('leagues/' + app.currentLeague, true);
   }
 });

@@ -1,6 +1,10 @@
 class LeaguesController < ApplicationController
   def index
-    @leagues = League.all
+    if params["id"]
+      @leagues = League.find params["id"]
+    else
+      @leagues = League.all
+    end
     render :json => @leagues
   end
 
@@ -117,7 +121,7 @@ class LeaguesController < ApplicationController
   end
 
   def show
-    @league = League.find params[:id]
+    @league = League.find params["id"]
   end
 
   def edit

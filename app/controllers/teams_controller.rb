@@ -1,6 +1,12 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Team.all
+    # This receives the data object in the relevant fetch request.
+    if params["league_id"]
+      # Limits the teams to the ones that belong to the league and the ones that aren't taken.
+      @teams = Team.where(:league_id => params["league_id"], :user_id => nil)
+    else
+      @teams = Team.all
+    end
     render :json => @teams
   end
 

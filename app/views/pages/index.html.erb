@@ -80,7 +80,9 @@
 
 
 <!-- Dashboard home template -->
-
+<!-- This conditional only works when the current user already has a team. If they don't then you have to refresh before
+you can see the data. -->
+<% if @current_user.team %>
 <script type="x-underscore-template" id="dashHomeView-template">
   <div id="team-info">
     <img src="{{ team.emblem }}" alt="" id="team-emblem">
@@ -253,7 +255,7 @@
   </form>
 </script>
 
-
+<% end %>
 
 
 

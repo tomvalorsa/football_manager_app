@@ -14,14 +14,28 @@ app.ShowLeagueView = Backbone.View.extend({
     // Copy this from appView.js
     var that = this;
 
-    // $.get('/leagues')
+    var leagueModel = app.leagues.fetch({
+      data: {
+        id: app.currentLeague
+      },
+      processData: true
+    }).done(function() {
+      // debugger;
+    });
 
     // debugger;
 
-    app.teams.fetch().done(function() {
+    app.teams.fetch({
+      data: {
+        league_id: app.currentLeague
+      },
+      processData: true
+    }).done(function() {
       // Need to somehow pass in the right league here.
       var html = $('#showLeague-template').html();
-      that.$el.html(html);
+      var showLeagueViewHTML = _.template(html);
+      debugger;
+      that.$el.html(showLeagueViewHTML(leagueModel.responseJSON));
       // debugger;
       // Need to limit this to only the teams with the right league id.
       that.collection.each(function(team) {
