@@ -7,7 +7,10 @@ app.Router = Backbone.Router.extend({
     'leagues/:id': 'renderShowLeagueView',
     'home': 'renderDashHomeView',
     'team': 'renderDashTeamView',
-    'league': 'renderDashLeagueView'
+    'league': 'renderDashLeagueView',
+    'settings': 'renderSettingsView',
+    'settings/team': 'renderTeamSettingsView',
+    'settings/user': 'renderUserSettingsView'
   },
   index: function() {
     var appView = new app.AppView({collection: app.leagues});
@@ -35,5 +38,17 @@ app.Router = Backbone.Router.extend({
   renderDashLeagueView: function() {
     var dashLeagueView = new app.DashLeagueView();
     dashLeagueView.render();
+  },
+  renderSettingsView: function() {
+    var settingsView = new app.SettingsView();
+    settingsView.render();
+  },
+  renderTeamSettingsView: function() {
+    var teamSettingsView = new app.TeamSettingsView();
+    teamSettingsView.render();
+  },
+  renderUserSettingsView: function() {
+    var userSettingsView = new app.UserSettingsView();
+    userSettingsView.render();
   }
 });

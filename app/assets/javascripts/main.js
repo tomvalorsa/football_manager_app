@@ -46,5 +46,9 @@ $(document).ready(function() {
     app.router.navigate('home', true);
   });
 
+  $('#dash-settings').click(function(e) {
+    e.preventDefault();
+    app.router.navigate('settings', true);
+  });
 
 });

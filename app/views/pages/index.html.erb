@@ -7,6 +7,7 @@
   <a href="#" id="dash-team">Team</a>
   <a href="#" id="dash-league">League</a>
   <a href="#" id="dash-transfers">Transfers</a>
+  <a href="#" id="dash-settings">Settings</a>
 
 <% end %>
 
@@ -87,7 +88,7 @@
     <img src="{{ team.emblem }}" alt="" id="team-emblem">
     <h2 id="user-team-name"></h2>
     <h4>Bank balance: <%= @current_user.team.bank_balance %></h4>
-    <h4>Total value: {{ team.total_value }}</h4>
+    <h4>Total value: <%= @current_user.team.total_value %></h4>
   </div>
 
   <div id="next-game-info">
@@ -189,6 +190,7 @@
   <div id="pitch"></div>
 </script>
 
+<!-- Dashboard league template -->
 
 <script type="x-underscore-template" id="dashLeagueView-template">
   <div id="league-table">
@@ -225,10 +227,33 @@
 </script>
 
 
+<!-- Dash settings template -->
 
+<script type="x-underscore-template" id="dashSettingsView-template">
+  <button id="team-settings-button">Team Settings</button>
+  <button id="user-settings-button">User Settings</button>
+</script>
 
+<script type="x-underscore-template" id="teamSettingsView-template">
+  <form>
+    <label for="team-name">Name:</label>
+    <input type="text" name="team-name" id="team-name">
 
+    <label for="team-emblem">Emblem URL:</label>
+    <input type="text" name="team-emblem" id="team-emblem">
 
+    <button id="team-submit">Save</button>
+  </form>
+</script>
+
+<script type="x-underscore-template" id="userSettingsView-template">
+  <form>
+    <label for="profile-image">Profile Image URL:</label>
+    <input type="text" name="profile-image" id="profile-image">
+
+    <button id="user-submit">Save</button>
+  </form>
+</script>
 
 
 
