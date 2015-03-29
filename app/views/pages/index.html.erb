@@ -185,6 +185,52 @@
       <% end %>
     </table>
   </div>
+
+  <div id="pitch"></div>
 </script>
+
+
+<script type="x-underscore-template" id="dashLeagueView-template">
+  <div id="league-table">
+    <table>
+      <colgroup span="4" class="columns"></colgroup>
+        <tr>
+          <th>Position</th>
+          <th>Team</th>
+          <th>P</th>
+          <th>W</th>
+          <th>D</th>
+          <th>L</th>
+          <th>F</th>
+          <th>A</th>
+          <th>GD</th>
+          <th>Pts</th>
+        </tr>
+        <% @current_user.team.league.teams.each do |team| %>
+          <tr>
+            <td><%= team.league_position %></td>
+            <td><%= team.name %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+    </table>
+  </div>
+</script>
+
+
+
+
+
+
+
+
+
 
 

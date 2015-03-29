@@ -38,7 +38,7 @@ $(document).ready(function() {
 
   $('#dash-league').click(function(e) {
     e.preventDefault();
-    app.router.navigate('home', true);
+    app.router.navigate('league', true);
   });
 
   $('#dash-transfers').click(function(e) {
