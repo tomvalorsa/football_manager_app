@@ -76,9 +76,7 @@ class LeaguesController < ApplicationController
     matches_per_league = matches_per_team * (@league.size / 2)
 
     matches_per_league.times do |i|
-      match = Match.create({
-        :league_id => @league.id
-      })
+      match = Match.create({})
     end
 
     # Need to loop though teams array and zip together home and away fixtures.
