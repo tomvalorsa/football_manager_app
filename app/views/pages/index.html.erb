@@ -204,6 +204,7 @@ you can see the data. -->
   <div id="league-table">
     <table>
       <colgroup span="4" class="columns"></colgroup>
+      <tbody id="league-standing-list"
         <tr>
           <th>Position</th>
           <th>Team</th>
@@ -216,24 +217,23 @@ you can see the data. -->
           <th>GD</th>
           <th>Pts</th>
         </tr>
-        <% @current_user.team.league.teams.each do |team| %>
-          <tr>
-            <td><%= team.league_position %></td>
-            <td><%= team.name %></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        <% end %>
+      </tbody>
     </table>
   </div>
 </script>
 
+<script type="x-underscore-template" id="leagueStandingListView-template">
+  <td>{{ league_position }}</td>
+  <td>{{ name }}</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+</script>
 
 <!-- Dash settings template -->
 

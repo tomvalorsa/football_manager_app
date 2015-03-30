@@ -36,7 +36,7 @@ app.Router = Backbone.Router.extend({
     dashTeamView.render();
   },
   renderDashLeagueView: function() {
-    var dashLeagueView = new app.DashLeagueView();
+    var dashLeagueView = new app.DashLeagueView({collection: app.teams});
     dashLeagueView.render();
   },
   renderSettingsView: function() {

@@ -12,8 +12,6 @@ app.DashTeamView = Backbone.View.extend({
     this.$el.empty();
     console.log('rendering the dash team view');
 
-
-
     var that = this;
     // Sets the league name.
     $('#league-name').html(app.userLeague.name);
@@ -29,17 +27,11 @@ app.DashTeamView = Backbone.View.extend({
       var dashTeamViewHTML = _.template(dashTeamViewTemplate);
       that.$el.html(dashTeamViewHTML(app.userTeam));
 
-      // debugger;
       that.collection.each(function(player) {
         var playerListView = new app.PlayerListView({model: player});
         playerListView.render();
       });
-
     });
-
-
-
-
   },
   updatePassing: function() {
     var passing = $('#passing').val();
