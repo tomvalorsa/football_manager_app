@@ -27,6 +27,7 @@ class LeaguesController < ApplicationController
         :user_id => nil,
         :name => "Team #{ i + 1 }",
         :overall_rating => nil,
+        # could change this to i
         :league_position => nil,
         :total_value => 0,
         :bank_balance => 30_000_000,

@@ -2,7 +2,7 @@ var app = app || {};
 
 app.Router = Backbone.Router.extend({
   routes: {
-    '': 'index',
+    '': 'loginRedirect',
     'leagues/new': 'renderAddLeagueView',
     'leagues/:id': 'renderShowLeagueView',
     'home': 'renderDashHomeView',
@@ -11,6 +11,13 @@ app.Router = Backbone.Router.extend({
     'settings': 'renderSettingsView',
     'settings/team': 'renderTeamSettingsView',
     'settings/user': 'renderUserSettingsView'
+  },
+  loginRedirect: function() {
+    if (app.userTeam) {
+      app.router.navigate('home', true);
+    } else {
+      index();
+    }
   },
   index: function() {
     var appView = new app.AppView({collection: app.leagues});
