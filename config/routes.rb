@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   # Backbone SPA home.
   get '/dashboard' => 'pages#index'
 
+
+
+  get '/match-script' => 'pages#match_script'
+
   # Current user info:
   get '/info/current-user-team' => 'teams#user_info'
 

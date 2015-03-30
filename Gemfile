@@ -28,6 +28,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass', '~> 3.3.4'
 
+gem 'round_robin_tournament'
+
 group :production do
   gem 'rails_12factor'
 end

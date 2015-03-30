@@ -146,6 +146,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
+    round_robin_tournament (0.0.1)
     rspec-core (3.2.2)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
@@ -225,6 +226,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.0)
   rails_12factor
+  round_robin_tournament
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
