@@ -1,6 +1,10 @@
 class TacticsController < ApplicationController
   def index
-    @tactics = Tactic.all
+    if params["id"]
+      @tactics = Tactic.find params["id"]
+    else
+      @tactics = Tactic.all
+    end
     render :json => @tactics
   end
 
@@ -21,8 +25,9 @@ class TacticsController < ApplicationController
   end
 
   def update
-    @tactic = Tactic.find params[:id]
+    @tactic = Tactic.find params["id"]
     @tactic.update tactic_params
+    render :json => @tactic
   end
 
   def destroy

@@ -42,8 +42,14 @@ app.DashTeamView = Backbone.View.extend({
 
   },
   updatePassing: function() {
-    console.log($('#passing').val());
+    var passing = $('#passing').val();
     // This needs to update the team's tactic model.
+    var tactic = app.tactics.get(app.userTactic.id)
+
+
+      // Can't be used on a json object, have to get the model itself.
+    tactic.set({'passing': passing});
+    tactic.save();
     // It also needs to set the selected option's 'selected' attr to 'selected'.
   },
   updateTackling: function() {
