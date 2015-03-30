@@ -10,7 +10,7 @@
 #  league_position :integer
 #  total_value     :integer
 #  bank_balance    :integer
-#  form_rating     :integer          default("50")
+#  form_rating     :integer          default(50)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  emblem          :text

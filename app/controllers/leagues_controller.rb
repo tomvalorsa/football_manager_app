@@ -50,8 +50,19 @@ class LeaguesController < ApplicationController
           position = 'FW'
         end
 
-        first_array = ['Andrea', 'Francesco', 'Alessandro', 'Cristiano', 'Domenico', 'Mauro', 'Tommaso', 'Damiano']
-        last_array = ['Pirlo', 'Totti', 'Del Piero', 'Doni', 'Barzagli', 'Icardi', 'Valorsa', 'Tomassi']
+
+        # Later on this could be based on the league's nationality and I could also paste in the most common names for each country,
+        # not just Italian legends.
+        first_array = %w(Francesco Alessandro Andrea Lorenzo Matteo Gabriele Mattia Leonardo Davide Riccardo Federico Luca Giuseppe Marco Tommaso Antonio Simone Samuele Giovanni Pietro Christian Nicolo Alessio Edoardo Diego Filippo Emanuele Daniele Michele Cristian)
+        last_array = %w(Pirlo Totti Del_Piero Doni Barzagli Icardi Valorsa Tomassi Rossi Russo Ferrari Esposito Bianchi Romano Colombo Ricci Marino Greco Bruno Gallo Conti De_Luca Mancini Costa Giordano Rizzo Lombardi Moretti)
+
+        # This only generates one random number but is reset every time in the loop
+        # Need to eventually make higher ratings more rare.
+        # Could also generate a player potential rating like in FM which could help with player growth with experience from matches.
+        attack = rand(59..90)
+        defence = rand(59..90)
+
+        value = ((attack + defence) / 2) * 500_000
 
         player = Player.create({
           :team_id => team.id,
@@ -59,11 +70,23 @@ class LeaguesController < ApplicationController
           :last_name => last_array.sample,
           :age => 24,
           :nationality => 'Italian',
-          :attack_rating => 91,
-          :defence_rating => 87,
-          :value => 40_000_000,
+          :attack_rating => attack,
+          :defence_rating => defence,
+          :value => value,
           :position => position
         })
+
+        @current_team = Team.find team.id
+        total_value = 0
+        overall_rating = 0
+        @current_team.players.each do |player|
+          total_value += player.value
+          overall_rating += ((player.attack_rating + player.defence_rating) / 2)
+        end
+
+        overall_rating = overall_rating / 18
+
+        @current_team.update(:total_value => total_value, :overall_rating => overall_rating)
       end
 
       tactic = Tactic.create({
@@ -75,7 +98,8 @@ class LeaguesController < ApplicationController
     matches_per_team = (@league.size * 2) - 2
     matches_per_league = matches_per_team * (@league.size / 2)
 
-    require 'round_robin_tournament'
+    # Is this necessary? Test.
+    # require 'round_robin_tournament'
     @teams = @league.teams
     @team_ids = @teams.map {|team| team.id }
     pairs = RoundRobinTournament.schedule(@team_ids).flatten(1)

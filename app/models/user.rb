@@ -6,7 +6,7 @@
 #  username        :string
 #  email           :string
 #  password_digest :text
-#  is_admin        :boolean          default("false")
+#  is_admin        :boolean          default(FALSE)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  profile_image   :text

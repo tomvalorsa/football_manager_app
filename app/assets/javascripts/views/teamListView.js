@@ -12,7 +12,6 @@ app.TeamListView = Backbone.View.extend({
     // Need this to only get the ones with the right league id (i.e. relevant to this league).
     // Also need to find the league's id to compare it to.
     this.$el.html(teamListViewHTML(this.model.toJSON()));
-
     $('#teams').append(this.$el);
   },
   pickTeam: function() {
