@@ -14,6 +14,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  emblem          :text
+#  points          :integer          default(0)
 #
 
 class Team < ActiveRecord::Base
