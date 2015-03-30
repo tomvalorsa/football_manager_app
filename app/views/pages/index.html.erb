@@ -11,7 +11,7 @@
 <script type="x-underscore-template" id="pickLeague-template">
   <h1>Leagues:</h1>
   <div id="leagues"></div>
-  <button id="add-league">Add new league</button>
+  <button id="add-league" class="btn btn-success">Add new league</button>
 </script>
 
 <script type="x-underscore-template" id="leagueListView-template">
@@ -22,19 +22,27 @@
 
 <script type="x-underscore-template" id="addLeagueView-template">
   <form>
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="league-name">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="league-name" class="form-control">
+    </div>
 
-    <label for="emblem">Emblem:</label>
-    <input type="url" name="emblem" id="league-emblem">
+    <div class="form-group">
+      <label for="emblem">Emblem:</label>
+      <input type="url" name="emblem" id="league-emblem" class="form-control">
+    </div>
 
-    <label for="nation">Nation:</label>
-    <input type="text" name="nation" id="league-nation">
+    <div class="form-group">
+      <label for="nation">Nation:</label>
+      <input type="text" name="nation" id="league-nation" class="form-control">
+    </div>
 
-    <label for="size">No. of teams:</label>
-    <input type="number" name="size" id="league-size">
+    <div class="form-group">
+      <label for="size">No. of teams:</label>
+      <input type="number" name="size" id="league-size" class="form-control">
+    </div>
 
-    <button id="submit-league-form">Create league</button>
+    <button id="submit-league-form" class="btn btn-primary">Create league</button>
   </form>
 </script>
 
@@ -114,7 +122,7 @@ you can see the data. -->
       <h2>{{ league_position }}th in <span id="league-name"></span></h2>
     </div>
 
-    <div id="tactics-settings">
+    <div id="tactics-settings" class="text-center">
       <label for="passing">Passing:</label>
       <select id="passing">
         <option selected="selected"></option>
@@ -151,7 +159,7 @@ you can see the data. -->
     </div>
 
     <div id="players">
-      <table>
+      <table class="table">
         <colgroup span="4" class="columns"></colgroup>
         <tbody id="player-list">
           <tr>
@@ -169,7 +177,9 @@ you can see the data. -->
   </div>
 
   <div id="tactics-right" class="col-md-5">
-    <div id="pitch"></div>
+    <div id="pitch">
+      <img id="pitch-graphic" src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Soccer_Field_Transparant.svg/2000px-Soccer_Field_Transparant.svg.png" alt="" style="width: 100%">
+    </div>
   </div>
 </script>
 
@@ -190,7 +200,7 @@ you can see the data. -->
 <script type="x-underscore-template" id="dashLeagueView-template">
   <h1 id="league-name"></h1>
   <div id="league-table">
-    <table>
+    <table class="table">
       <colgroup span="4" class="columns"></colgroup>
       <tbody id="league-standing-list"
         <tr>
