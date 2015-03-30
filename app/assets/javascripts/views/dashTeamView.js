@@ -11,10 +11,7 @@ app.DashTeamView = Backbone.View.extend({
   render: function() {
     this.$el.empty();
     console.log('rendering the dash team view');
-
     var that = this;
-    // Sets the league name.
-    $('#league-name').html(app.userLeague.name);
 
     app.players.fetch({
       data: {
@@ -26,6 +23,8 @@ app.DashTeamView = Backbone.View.extend({
       var dashTeamViewTemplate = $('#dashTeamView-template').html();
       var dashTeamViewHTML = _.template(dashTeamViewTemplate);
       that.$el.html(dashTeamViewHTML(app.userTeam));
+      // Sets the league name. Has to go after the template has been rendered.
+      $('#league-name').html(app.userLeague.name);
 
       that.collection.each(function(player) {
         var playerListView = new app.PlayerListView({model: player});
