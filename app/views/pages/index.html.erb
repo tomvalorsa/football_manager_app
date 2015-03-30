@@ -84,7 +84,7 @@ you can see the data. -->
 
 <script type="x-underscore-template" id="dashHomeView-template">
   <div id="team-info">
-    <img src="{{ emblem }}" alt="" id="team-emblem">
+    <img class="emblem" src="{{ emblem }}" alt="" id="team-emblem">
     <h2 id="user-team-name">{{ name }}</h2>
     <h4>Bank balance: {{ bank_balance }}</h4>
     <h4>Total value: {{ total_value }}</h4>
@@ -123,7 +123,7 @@ you can see the data. -->
 <!-- Dashboard team template -->
 <script type="x-underscore-template" id="dashTeamView-template">
   <div id="info-div">
-    <img src="(the team's emblem)" alt="">
+    <img class="emblem" src="{{ emblem }}" alt="">
     <h1>{{ name }}</h1>
     <h2>{{ league_position }}th in <span id="league-name"></span></h2>
   </div>
@@ -164,7 +164,6 @@ you can see the data. -->
     </select>
   </div>
 
-  // Make this just div#players and then make a new template with a table to pass the table rows in.
   <div id="players">
     <table>
       <colgroup span="4" class="columns"></colgroup>
@@ -200,6 +199,7 @@ you can see the data. -->
 <!-- Dashboard league template -->
 
 <script type="x-underscore-template" id="dashLeagueView-template">
+  <h1 id="league-name"></h1>
   <div id="league-table">
     <table>
       <colgroup span="4" class="columns"></colgroup>

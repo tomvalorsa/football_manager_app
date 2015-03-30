@@ -9,6 +9,10 @@ app.TeamSettingsView = Backbone.View.extend({
     this.$el.empty();
     var html = $('#teamSettingsView-template').html();
     this.$el.html(html);
+
+    // Populate form fields with current values.
+    $('#team-name').val(app.userTeam.name);
+    $('#team-emblem').val(app.userTeam.emblem);
     // Fetch the current user's team here.
     // Then populate the fields with the right information.
   },
@@ -16,7 +20,14 @@ app.TeamSettingsView = Backbone.View.extend({
     var teamName = $('#team-name').val();
     var teamEmblem = $('#team-emblem').val();
 
-    // Updating here relies on passing in the right model to this view...I think?
-    debugger;
+    var team = app.teams.get(app.userTeam.id);
+
+    team.set({
+      'name': teamName,
+      'emblem': teamEmblem
+    });
+    team.save().done(function() {
+      app.router.navigate('settings', true);
+    });
   }
 });

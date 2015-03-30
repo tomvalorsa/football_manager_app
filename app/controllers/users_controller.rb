@@ -28,8 +28,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-    @user.update user_params
-    # redirect_to user_path
+    @user.update(
+      :profile_image => params["profile_image"]
+    )
+    render :json => @user
   end
 
   def destroy

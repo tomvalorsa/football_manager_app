@@ -5,7 +5,6 @@ app.DashLeagueView = Backbone.View.extend({
   render: function() {
     this.$el.empty();
 
-
     var that = this;
 
     app.teams.fetch({
@@ -18,12 +17,12 @@ app.DashLeagueView = Backbone.View.extend({
       var html = $('#dashLeagueView-template').html();
       that.$el.html(html);
 
-      debugger;
+      $('#league-name').html(app.userLeague.name);
+
       that.collection.each(function(team) {
         var leagueStandingListView = new app.LeagueStandingListView({model: team});
         leagueStandingListView.render();
       })
     });
-
   }
 });

@@ -44,7 +44,9 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find params[:id]
     @team.update(
-      :user_id => params[:user_id]
+      :user_id => params[:user_id],
+      :name => params['name'],
+      :emblem => params['emblem']
     )
 
     render :json => @team

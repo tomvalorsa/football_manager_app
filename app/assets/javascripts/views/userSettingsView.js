@@ -9,10 +9,19 @@ app.UserSettingsView = Backbone.View.extend({
     this.$el.empty();
     var html = $('#userSettingsView-template').html();
     this.$el.html(html);
+
+    $('#profile-image').val(app.currentUser.profile_image);
   },
   updateUser: function() {
     var profileURL = $('#profile-image').val();
 
-    // Updating here relies on passing in the right model to this view...I think?
+    var user = app.users.get(app.currentUser.id);
+
+    user.set({
+      'profile_image': profileURL
+    });
+    user.save().done(function() {
+      app.router.navigate('settings', true);
+    });
   }
 });
