@@ -12,10 +12,9 @@ app.DashTeamView = Backbone.View.extend({
     this.$el.empty();
     console.log('rendering the dash team view');
 
-    var dashTeamViewTemplate = $('#dashTeamView-template').html();
-    var dashTeamViewHTML = _.template(dashTeamViewTemplate);
-    this.$el.html(dashTeamViewHTML(app.userTeam));
 
+
+    var that = this;
     // Sets the league name.
     $('#league-name').html(app.userLeague.name);
 
@@ -24,12 +23,18 @@ app.DashTeamView = Backbone.View.extend({
         team_id: app.userTeam.id
       },
       processData: true
-    }).done(function(result) {
+    }).done(function() {
+
+      var dashTeamViewTemplate = $('#dashTeamView-template').html();
+      var dashTeamViewHTML = _.template(dashTeamViewTemplate);
+      that.$el.html(dashTeamViewHTML(app.userTeam));
+
       // debugger;
-      for (var i = 0; i < result.length; i++){
-        var playerListView = new app.PlayerListView({model: result[i]});
+      that.collection.each(function(player) {
+        var playerListView = new app.PlayerListView({model: player});
         playerListView.render();
-      }
+      });
+
     });
 
 

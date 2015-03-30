@@ -1,13 +1,14 @@
 var app = app || {};
 
 app.PlayerListView = Backbone.View.extend({
-  el: '#playerList',
+  tagName: 'tr',
   render: function() {
+
     var playerListViewTemplate = $('#playerListView-template').html();
     var playerListViewHTML = _.template(playerListViewTemplate);
-    debugger;
-    this.$el.html(playerListViewHTML(this.model));
 
-    $('#player-list tbody').append(this.$el);
+    this.$el.html(playerListViewHTML(this.model.toJSON()));
+    $('#player-list').append(this.$el);
+
   }
 });
