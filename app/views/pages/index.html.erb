@@ -1,58 +1,8 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Football Manager</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <% if @current_user.team %>
-          <!-- add in class="active" to the <li> tags to get the idea you're on a certain page -->
-          <li><a href="#" id="dash-home">Dashboard</a></li>
-          <li><a href="#" id="dash-team">Team</a></li>
-          <li><a href="#" id="dash-league">League</a></li>
-          <li><a href="#" id="dash-settings">Settings</a></li>
-        <% end %>
-      </ul>
-      <% if @current_user %>
-        <h4 class="navbar-form navbar-right">Welcome, <%= @current_user.username %> - <%= link_to 'Log out', login_path, :method => 'delete' %></h4>
-
-      <% else %>
-        <%= form_tag login_path, :method => 'post', :class => "navbar-form navbar-right" do %>
-          <div class="form-group form-group-sm">
-            <%= text_field :username, nil, :autofocus => :true, :class => "form-control", :placeholder => "Username" %>
-          </div>
-          <div class="form-group form-group-sm">
-            <%= password_field_tag :password, nil, :class => "form-control", :placeholder => "Password" %>
-          </div>
-          <button class="btn btn-default btn-sm">Sign in</button>
-        <% end %>
-
-        <% if flash[:error].present? %>
-          <p class="text-right error-msg"><%= flash[:error] if flash[:error].present? %></p>
-        <% end %>
-      <% end %>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-
-
-
-
 <% if @current_user.is_admin? %>
-  <p>you're the admin user, congratulations!</p>
+  <p>You're the admin user, congratulations!</p>
+  <hr>
 <% end %>
 
-<hr>
 <div id="container">
 <div id="main"></div>
 </div>
@@ -157,66 +107,70 @@ you can see the data. -->
 
 <!-- Dashboard team template -->
 <script type="x-underscore-template" id="dashTeamView-template">
-  <div id="info-div">
-    <img class="emblem" src="{{ emblem }}" alt="">
-    <h1>{{ name }}</h1>
-    <h2>{{ league_position }}th in <span id="league-name"></span></h2>
+  <div id="tactics-left" class="col-md-7">
+    <div id="info-div">
+      <img class="emblem" src="{{ emblem }}" alt="">
+      <h1>{{ name }}</h1>
+      <h2>{{ league_position }}th in <span id="league-name"></span></h2>
+    </div>
+
+    <div id="tactics-settings">
+      <label for="passing">Passing:</label>
+      <select id="passing">
+        <option selected="selected"></option>
+        <option value="short">short</option>
+        <option value="balanced">balanced</option>
+        <option value="long">long</option>
+      </select>
+
+      <label for="tackling">Tackling:</label>
+      <select id="tackling">
+        <option selected="selected"></option>
+        <option value="light">light</option>
+        <option value="balanced">balanced</option>
+        <option value="hard">hard</option>
+      </select>
+
+      <label for="tempo">Tempo:</label>
+      <select id="tempo">
+        <option selected="selected"></option>
+        <option value="slow">slow</option>
+        <option value="balanced">balanced</option>
+        <option value="fast">fast</option>
+      </select>
+
+      <label for="Formation">Formation:</label>
+      <select id="formation">
+        <option selected="selected"></option>
+        <option value="4-4-2">4-4-2</option>
+        <option value="4-3-3">4-3-3</option>
+        <option value="4-5-1">4-5-1</option>
+        <option value="4-1-2-1-2">4-1-2-1-2</option>
+        <option value="4-1-4-1">4-1-4-1</option>
+      </select>
+    </div>
+
+    <div id="players">
+      <table>
+        <colgroup span="4" class="columns"></colgroup>
+        <tbody id="player-list">
+          <tr>
+            <th>Name</th>
+            <th>Nationality</th>
+            <th>Position</th>
+            <th>Age</th>
+            <th>Attack</th>
+            <th>Defence</th>
+            <th>Value</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div id="tactics-settings">
-    <label for="passing">Passing:</label>
-    <select id="passing">
-      <option selected="selected"></option>
-      <option value="short">short</option>
-      <option value="balanced">balanced</option>
-      <option value="long">long</option>
-    </select>
-
-    <label for="tackling">Tackling:</label>
-    <select id="tackling">
-      <option selected="selected"></option>
-      <option value="light">light</option>
-      <option value="balanced">balanced</option>
-      <option value="hard">hard</option>
-    </select>
-
-    <label for="tempo">Tempo:</label>
-    <select id="tempo">
-      <option selected="selected"></option>
-      <option value="slow">slow</option>
-      <option value="balanced">balanced</option>
-      <option value="fast">fast</option>
-    </select>
-
-    <label for="Formation">Formation:</label>
-    <select id="formation">
-      <option selected="selected"></option>
-      <option value="4-4-2">4-4-2</option>
-      <option value="4-3-3">4-3-3</option>
-      <option value="4-5-1">4-5-1</option>
-      <option value="4-1-2-1-2">4-1-2-1-2</option>
-      <option value="4-1-4-1">4-1-4-1</option>
-    </select>
+  <div id="tactics-right" class="col-md-5">
+    <div id="pitch"></div>
   </div>
-
-  <div id="players">
-    <table>
-      <colgroup span="4" class="columns"></colgroup>
-      <tbody id="player-list">
-        <tr>
-          <th>Name</th>
-          <th>Nationality</th>
-          <th>Position</th>
-          <th>Age</th>
-          <th>Attack</th>
-          <th>Defence</th>
-          <th>Value</th>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div id="pitch"></div>
 </script>
 
 <!-- Player list template -->
@@ -272,28 +226,37 @@ you can see the data. -->
 <!-- Dash settings template -->
 
 <script type="x-underscore-template" id="dashSettingsView-template">
-  <button id="team-settings-button">Team Settings</button>
-  <button id="user-settings-button">User Settings</button>
+  <button id="team-settings-button" class="btn btn-default">Team Settings</button>
+  <button id="user-settings-button" class="btn btn-default">User Settings</button>
 </script>
+
 
 <script type="x-underscore-template" id="teamSettingsView-template">
   <form>
-    <label for="team-name">Name:</label>
-    <input type="text" name="team-name" id="team-name">
+    <div class="form-group">
+      <label for="team-name">Name:</label>
+      <input type="text" name="team-name" id="team-name" class="form-control">
+    </div>
 
-    <label for="team-emblem">Emblem URL:</label>
-    <input type="text" name="team-emblem" id="team-emblem">
+    <div class="form-group">
+      <label for="team-emblem">Emblem URL:</label>
+      <input type="text" name="team-emblem" id="team-emblem" class="form-control">
+    </div>
 
+    <button id="team-settings-back" class="btn btn-default">Back to settings</button>
     <button class="btn btn-primary" id="team-submit">Save</button>
   </form>
 </script>
 
 <script type="x-underscore-template" id="userSettingsView-template">
   <form>
-    <label for="profile-image">Profile Image URL:</label>
-    <input type="text" name="profile-image" id="profile-image">
+    <div class="form-group">
+      <label for="profile-image">Profile Image URL:</label>
+      <input type="text" name="profile-image" id="profile-image" class="form-control">
+    </div>
 
-    <button id="user-submit">Save</button>
+    <button id="user-settings-back" class="btn btn-default">Back to settings</button>
+    <button id="user-submit" class="btn btn-primary">Save</button>
   </form>
 </script>
 

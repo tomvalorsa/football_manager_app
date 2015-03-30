@@ -3,7 +3,8 @@ var app = app || {};
 app.UserSettingsView = Backbone.View.extend({
   el: '#main',
   events: {
-    'click #user-submit': 'updateUser'
+    'click #user-submit': 'updateUser',
+    'click #user-settings-back': 'navToSettings'
   },
   render: function() {
     this.$el.empty();
@@ -23,5 +24,9 @@ app.UserSettingsView = Backbone.View.extend({
     user.save().done(function() {
       app.router.navigate('settings', true);
     });
+  },
+  navToSettings: function(e) {
+    e.preventDefault();
+    app.router.navigate('settings', true);
   }
 });

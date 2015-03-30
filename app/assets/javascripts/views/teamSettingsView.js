@@ -3,7 +3,8 @@ var app = app || {};
 app.TeamSettingsView = Backbone.View.extend({
   el: '#main',
   events: {
-    'click #team-submit': 'updateTeam'
+    'click #team-submit': 'updateTeam',
+    'click #team-settings-back': 'navToSettings'
   },
   render: function() {
     this.$el.empty();
@@ -29,5 +30,9 @@ app.TeamSettingsView = Backbone.View.extend({
     team.save().done(function() {
       app.router.navigate('settings', true);
     });
+  },
+  navToSettings: function(e) {
+    e.preventDefault();
+    app.router.navigate('settings', true);
   }
 });

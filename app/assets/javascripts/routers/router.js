@@ -16,12 +16,9 @@ app.Router = Backbone.Router.extend({
     if (app.userTeam) {
       app.router.navigate('home', true);
     } else {
-      index();
+      var appView = new app.AppView({collection: app.leagues});
+      appView.render();
     }
-  },
-  index: function() {
-    var appView = new app.AppView({collection: app.leagues});
-    appView.render();
   },
   renderAddLeagueView: function() {
     console.log('add league in the app router');
