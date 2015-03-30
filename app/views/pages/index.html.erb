@@ -81,7 +81,7 @@
 <!-- This conditional only works when the current user already has a team. If they don't then you have to refresh before
 you can see the data. -->
 <!-- REMOVE THIS ONCE BACKBONE DATA RETRIEVAL IS WORKING PROPERLY -->
-<% if @current_user.team %>
+
 <script type="x-underscore-template" id="dashHomeView-template">
   <div id="team-info">
     <img src="{{ emblem }}" alt="" id="team-emblem">
@@ -124,7 +124,6 @@ you can see the data. -->
 <script type="x-underscore-template" id="dashTeamView-template">
   <div id="info-div">
     <img src="(the team's emblem)" alt="">
-    // Make this a template for the team model.
     <h1>{{ name }}</h1>
     <h2>{{ league_position }}th in <span id="league-name"></span></h2>
   </div>
@@ -262,8 +261,6 @@ you can see the data. -->
     <button id="user-submit">Save</button>
   </form>
 </script>
-
-<% end %>
 
 
 

@@ -15,12 +15,8 @@ app.ShowLeagueView = Backbone.View.extend({
     var that = this;
 
     // Stores the right league model so we can push it to the template below.
-    var leagueModel = app.leagues.fetch({
-      data: {
-        id: app.currentLeague
-      },
-      processData: true
-    });
+    // FIX THIS.
+    var leagueModel = app.leagues.get(app.currentLeague);
 
     app.teams.fetch({
       data: {
@@ -29,8 +25,9 @@ app.ShowLeagueView = Backbone.View.extend({
       processData: true
     }).done(function() {
       var showLeagueTemplate = $('#showLeague-template').html();
-      var showLeagueHTML = _.template(showLeagueTemplate);
-      that.$el.html(showLeagueViewHTML(leagueModel.responseJSON));
+      var showLeagueViewHTML = _.template(showLeagueTemplate);
+      debugger;
+      that.$el.html(showLeagueViewHTML(leagueModel.toJSON()));
 
       that.collection.each(function(team) {
         var teamListView = new app.TeamListView({model: team});
