@@ -28,8 +28,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass', '~> 3.3.4'
 
-gem 'rails_12factor', group: :production
-
+group :production do
+  gem 'rails_12factor'
+end
 # Use Unicorn as the app server
 # gem 'unicorn'
 
