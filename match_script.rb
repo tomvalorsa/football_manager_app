@@ -8,6 +8,21 @@
 # Could maybe fix this by adding a gameday int to the league. Then it could shift of the right amount of games from a starting position (of gameday, ignoring the matches that have already been played...?)
 @leagues.each do |league|
 
+  # Go into each league, get their Gameday model (or just columns in the league model. gameday_number and matches_per_gameday)
+  # Gameday should have a gameday_number (which will tell us what stage of the season the league is at)
+  # At the start of every match script the gameday should be increased by 1
+  # Then we can say get league.size/2 amount of matches from the array, starting at (gameday_number - 1)
+    # so on gameday 1, we can get matches_per_gameday amount of matches starting from the index of 0 in the array
+    # on gameday 2 it would start from index of 1 and retrieve a game that's already been played...
+    # FIX - this could instead be used to calculate how many times the loop needs to run below.
+  # Could fix this by having a games_played column in the league model
+    # This would keep a count of all of the games played (and would be updated with the models at the end of every match the script runs on)
+    # so on gameday 1, we can get games_played which will be 0. we can start from the index of games_played in the matches array
+      # for a league of 4 teams, this will means that we need 2 matches. at the end games_played will have been incremented by 2
+    # so on gameday 2, we can get games_played which will be 2. we can start from the index of games_played in the matches array
+      # this will get us index 2, so start from the 3rd match in the array, ignoring the first 2 that have already been played.
+
+
   # Get all of the matches for this league.
   @matches = league.matches
 
@@ -22,6 +37,7 @@
   num_matches_per_gameday.times do |i|
 
     # Get a match from the set to be played this game day.
+    # IS SHIFT THE RIGHT METHOD? Might take them out permanently. Just need to get a sample/slice.
     current_match = @matches.shift
 
     # Retrieve the home and away team objects and their tactic models.
