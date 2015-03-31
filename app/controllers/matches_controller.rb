@@ -60,12 +60,13 @@ class MatchesController < ApplicationController
       league.matches_per_gameday.times do |i|
 
         # Get all of the matches for this league.
-        @matches = league.matches
+        @matches = league.matches.sort
 
         # Find the current number of matches played to use as an index to pick from league.matches.
         matches_played = league.matches_played
 
         # Get the next match from the set to be played this game day.
+        # Might be the bit thats breaking, skipping over certain teams.
         current_match = @matches[matches_played]
 
         # Retrieve the home and away team objects and their tactic models.
@@ -122,6 +123,8 @@ class MatchesController < ApplicationController
         away_team_points = away.points
         home_bank_balance = home.bank_balance
         away_bank_balance = away.bank_balance
+        home_form_rating = home.form_rating
+        away_form_rating = away.form_rating
 
         if home_goals > away_goals
           home_result += 'W'
@@ -129,12 +132,16 @@ class MatchesController < ApplicationController
           home_team_points += 3
           home_bank_balance += 2_000_000
           away_bank_balance += 500_000
+          home_form_rating += 15
+          away_form_rating -= 5
         elsif away_goals > home_goals
           home_result += 'L'
           away_result += 'W'
           away_team_points += 3
           home_bank_balance += 500_000
           away_bank_balance += 2_000_000
+          home_form_rating -= 5
+          away_form_rating += 15
         else
           home_result += 'D'
           away_result += 'D'
@@ -142,6 +149,8 @@ class MatchesController < ApplicationController
           away_team_points += 1
           home_bank_balance += 1_000_000
           away_bank_balance += 1_000_000
+          home_form_rating += 5
+          away_form_rating += 5
         end
 
         # Update league.matches_played so that next time round it will evaluate a new match/move on to the next one.
@@ -152,8 +161,8 @@ class MatchesController < ApplicationController
         current_match.update(:home_goals => home_goals, :away_goals => away_goals, :home_result => home_result, :away_result => away_result)
 
         # Update team objects with points and money.
-        home.update(:points => home_team_points, :bank_balance => home_bank_balance)
-        away.update(:points => away_team_points, :bank_balance => away_bank_balance)
+        home.update(:points => home_team_points, :bank_balance => home_bank_balance, :form_rating => home_form_rating)
+        away.update(:points => away_team_points, :bank_balance => away_bank_balance, :form_rating => away_form_rating)
 
         # Put the match object into the home and away teams' matches arrays so that they can access the stats.
         home.matches << current_match
