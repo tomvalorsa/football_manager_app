@@ -25,7 +25,9 @@ app.DashLeagueView = Backbone.View.extend({
         leagueStandingListView.render();
       })
 
-      $("#league-standings").tablesorter();
+      $("#league-standings").tablesorter({
+        sortList: [[9,1],[8,1]]
+      });
     });
 
   }

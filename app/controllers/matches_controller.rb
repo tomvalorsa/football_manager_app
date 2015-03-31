@@ -47,6 +47,8 @@ class MatchesController < ApplicationController
 
       # binding.pry
 
+      # ARE VALUES BEING ZEROED FOR THE NEXT RUN THROUGH? MIGHT BE ACCUMULATING.
+
       league.matches_per_gameday.times do |i|
 
         # Get all of the matches for this league.
