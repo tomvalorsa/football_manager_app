@@ -2,6 +2,9 @@ var app = app|| {};
 
 app.ShowLeagueView = Backbone.View.extend({
   el: '#main',
+  events: {
+    'click #back-to-league-selection': 'navBack'
+  },
   render: function() {
     this.$el.empty();
     console.log('this is the show league view render');
@@ -25,5 +28,9 @@ app.ShowLeagueView = Backbone.View.extend({
         teamListView.render();
       });
     });
+  },
+  navBack: function(e) {
+    e.preventDefault();
+    app.router.navigate('', true)
   }
 });
