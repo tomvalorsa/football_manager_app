@@ -33,6 +33,8 @@ gem 'round_robin_tournament'
 group :production do
   gem 'rails_12factor'
 end
+
+gem 'chart-js-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

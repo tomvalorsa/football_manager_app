@@ -3,10 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .league, .team {
-  height: 150px;
-  width: 150px;
+  width: auto;
   display: inline-block;
-  border: 1px solid black;
 }
 
 .emblem {

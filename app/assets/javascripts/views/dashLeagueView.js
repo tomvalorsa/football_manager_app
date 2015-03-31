@@ -4,7 +4,6 @@ app.DashLeagueView = Backbone.View.extend({
   el: '#main',
   render: function() {
     this.$el.empty();
-
     var that = this;
 
     app.teams.fetch({

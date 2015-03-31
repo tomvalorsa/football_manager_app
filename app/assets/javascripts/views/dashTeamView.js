@@ -9,6 +9,7 @@ app.DashTeamView = Backbone.View.extend({
     'change #formation': 'updateFormation'
   },
   render: function() {
+    debugger;
     this.$el.empty();
     console.log('rendering the dash team view');
     var that = this;

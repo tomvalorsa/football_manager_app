@@ -15,9 +15,16 @@
 </script>
 
 <script type="x-underscore-template" id="leagueListView-template">
-  <p>{{ name }}</p>
-  <p>{{ nation }}</p>
-  <p>Teams: {{ size }}</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ name }}</h3>
+  </div>
+  <div class="panel-body">
+    <p>Nation: {{ nation }}</p>
+    <p>Teams: {{ size }}</p>
+    <p>Game day: {{ gameday_number }}</p>
+  </div>
+</div>
 </script>
 
 <script type="x-underscore-template" id="addLeagueView-template">
@@ -59,14 +66,19 @@
   </div>
   <div id="teams"></div>
 
-  <button id="back-to-league-selection">Back to leagues</button>
+  <button id="back-to-league-selection" class="btn btn-default">Back to leagues</button>
 </script>
 
 <script type="x-underscore-template" id="teamListView-template">
-  <p>{{ name }}</p>
-  <p>ID: {{ id }}</p>
-  <p>League ID: {{ league_id }}</p>
-  <p>{{ bank_balance }}</p>
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ name }}</h3>
+  </div>
+  <div class="panel-body">
+    <p>Team rating: {{ overall_rating }}</p>
+    <p>Bank balance: £{{ bank_balance }}</p>
+  </div>
+</div>
 </script>
 
 
@@ -79,20 +91,16 @@ you can see the data. -->
   <div id="team-info">
     <img class="emblem" src="{{ emblem }}" alt="" id="team-emblem">
     <h2 id="user-team-name">{{ name }}</h2>
-    <h4>Bank balance: {{ bank_balance }}</h4>
-    <h4>Total value: {{ total_value }}</h4>
-  </div>
-
-  <div id="next-game-info">
-    <h3>(put the opponent's name here)</h3>
-    <h4>(opponent's league position)</h4>
-    <h4>(match date/countdown)</h4>
-    <img src="(opponent's team crest)" alt="">
+    <h4>Manager: <%= @current_user.username.capitalize %></h4>
   </div>
 
   <div id="finances">
+    <h2>Finances</h2>
+    <h4>Bank balance: £{{ bank_balance }}</h4>
+    <h4>Total value: £{{ total_value }}</h4>
     <div id="finance-chart">
-      <!-- add in the d3 for finances here -->
+      <p>chart.js here</p>
+      <canvas id="myChart" width="400" height="400"></canvas>
     </div>
   </div>
 
@@ -106,10 +114,14 @@ you can see the data. -->
   </div>
 
   <div id="team-stats">
-    <h3>(top scorer with icon here)</h3>
-    <h3>(most assists with icon here)</h3>
-    <h3>(most yellow cards with icon here)</h3>
-    <h3>(most red cards with icon here)</h3>
+    <h2>Team Stats</h2>
+    <h4>Goals: {{ goals_for }}</h4>
+    <h4>Matches played: {{ played }}</h4>
+    <h4>Wins: {{ win }}</h4>
+    <h4>Draws: {{ draw }}</h4>
+    <h4>Losses: {{ loss }}</h4>
+
+    <!-- have a graph of goals to games ratio -->
   </div>
 </script>
 
@@ -158,9 +170,9 @@ you can see the data. -->
     </div>
 
     <div id="players">
-      <table class="table">
+      <table class="table table-condensed">
         <colgroup span="4" class="columns"></colgroup>
-        <tbody id="player-list">
+        <thead id="player-list">
           <tr>
             <th>Name</th>
             <th>Nationality</th>
@@ -170,7 +182,8 @@ you can see the data. -->
             <th>Defence</th>
             <th>Value</th>
           </tr>
-        </tbody>
+        </thead>
+        <tbody id="player-list"></tbody>
       </table>
     </div>
   </div>
@@ -199,9 +212,9 @@ you can see the data. -->
 <script type="x-underscore-template" id="dashLeagueView-template">
   <h1 id="league-name"></h1>
   <div id="league-table">
-    <table class="table">
+    <table class="table" id="league-standings">
       <colgroup span="4" class="columns"></colgroup>
-      <tbody id="league-standing-list"
+      <thead>
         <tr>
           <th>Position</th>
           <th>Team</th>
@@ -214,7 +227,8 @@ you can see the data. -->
           <th>GD</th>
           <th>Pts</th>
         </tr>
-      </tbody>
+      </thead>
+      <tbody id="league-standing-list"></tbody>
     </table>
   </div>
 </script>
