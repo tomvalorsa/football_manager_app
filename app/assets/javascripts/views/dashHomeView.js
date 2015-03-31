@@ -15,8 +15,11 @@ app.DashHomeView = Backbone.View.extend({
 
 
     // Plug in some proper data here.
+    // Make an ajax request to a hidden page (make one up) which contains the current user's team's match array.
+    // Get these and use as data points for the graph below.
+
     var data = {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: ["1", "2", "3", "4", "5", "6", "7"],
       datasets: [
         {
           label: "My First dataset",
