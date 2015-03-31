@@ -17,12 +17,7 @@ namespace :match do
       gameday_number += 1
       league.update(:gameday_number => gameday_number)
 
-      # Run the following match program that many times.
-
-      # binding.pry
-
-      # ARE VALUES BEING ZEROED FOR THE NEXT RUN THROUGH? MIGHT BE ACCUMULATING.
-
+      # Run as many times as necessary to complete one gameday.
       league.matches_per_gameday.times do |i|
 
         # Get all of the matches for this league.
@@ -32,10 +27,7 @@ namespace :match do
         matches_played = league.matches_played
 
         # Get the next match from the set to be played this game day.
-        # Doesn't skip teams out any more, just runs twice as many as needed...yay.
         current_match = @matches[matches_played]
-
-        # binding.pry
 
         # Retrieve the home and away team objects and their tactic models.
         home = Team.find current_match.home_team_id
@@ -46,8 +38,6 @@ namespace :match do
         # Calculate number of chances to score per team:
         home_chances = 0
         away_chances = 0
-
-        # Nobody gets a chance if they're equal. Stalemate.
 
         # Form:
         if home.form_rating > away.form_rating
@@ -71,17 +61,16 @@ namespace :match do
         home_chances *= rand(1..3)
         away_chances *= rand(1..3)
 
-
         # Evaluation of chances:
         home_goals = 0
         away_goals = 0
 
         home_chances.times do |i|
-          home_goals += (i + 1) * ([0, 1].sample)
+          home_goals += [0, 1].sample
         end
 
         away_chances.times do |i|
-          away_goals += (i + 1) * ([0, 1].sample)
+          away_goals += [0, 1].sample
         end
 
         # Set winner
@@ -115,8 +104,8 @@ namespace :match do
         away_goals_for += away_goals
         home_goals_against += away_goals
         away_goals_against += home_goals
-        home_goal_difference += (home_goals_for - home_goals_against)
-        away_goal_difference += (away_goals_for - away_goals_against)
+        home_goal_difference = (home_goals_for - home_goals_against)
+        away_goal_difference = (away_goals_for - away_goals_against)
 
         if home_goals > away_goals
           home_result += 'W'

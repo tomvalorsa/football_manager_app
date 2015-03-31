@@ -27,7 +27,7 @@ app.DashLeagueView = Backbone.View.extend({
 
       // sortList specifies, in preference order, the column (zero-indexed) and then 0 = ascending or 1 = descending for values.
       $("#league-standings").tablesorter({
-        sortList: [[9,1],[8,1],[6,1]]
+        sortList: [[9,1],[8,1],[6,1],[1,0]]
       });
     });
 
