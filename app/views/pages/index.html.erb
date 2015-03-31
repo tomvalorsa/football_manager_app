@@ -15,16 +15,16 @@
 </script>
 
 <script type="x-underscore-template" id="leagueListView-template">
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{ name }}</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ name }}</h3>
+    </div>
+    <div class="panel-body">
+      <p>Nation: {{ nation }}</p>
+      <p>Teams: {{ size }}</p>
+      <p>Game day: {{ gameday_number }}</p>
+    </div>
   </div>
-  <div class="panel-body">
-    <p>Nation: {{ nation }}</p>
-    <p>Teams: {{ size }}</p>
-    <p>Game day: {{ gameday_number }}</p>
-  </div>
-</div>
 </script>
 
 <script type="x-underscore-template" id="addLeagueView-template">
@@ -88,40 +88,79 @@ you can see the data. -->
 <!-- REMOVE THIS ONCE BACKBONE DATA RETRIEVAL IS WORKING PROPERLY -->
 
 <script type="x-underscore-template" id="dashHomeView-template">
-  <div id="team-info">
-    <img class="emblem" src="{{ emblem }}" alt="" id="team-emblem">
-    <h2 id="user-team-name">{{ name }}</h2>
-    <h4>Manager: <%= @current_user.username.capitalize %></h4>
-  </div>
-
-  <div id="finances">
-    <h2>Finances</h2>
-    <h4>Bank balance: £{{ bank_balance }}</h4>
-    <h4>Total value: £{{ total_value }}</h4>
-    <div id="finance-chart">
-      <p>chart.js here</p>
-      <canvas id="myChart" width="400" height="400"></canvas>
+  <div class="row">
+    <div id="team-info" class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Team Info</h3>
+        </div>
+        <div class="panel-body">
+          <img class="emblem" src="{{ emblem }}" alt="" id="team-emblem">
+          <h2>{{ name }}</h2>
+          <p>Manager: <%= @current_user.username.capitalize %></p>
+        </div>
+      </div>
     </div>
+
+    <div id="team-rating" class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Team Rating</h3>
+        </div>
+        <div class="panel-body">
+          <h2>{{ overall_rating }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div id="form" class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Form</h3>
+        </div>
+        <div class="panel-body">
+          <h2>{{ form_rating }}/100</h2>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div id="form">
-    <!-- form stuff to go here -->
-  </div>
+  <div class="row">
+    <div id="finances" class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Finances</h3>
+        </div>
+        <div class="panel-body">
+          <h4>Bank balance: £{{ bank_balance }}</h4>
+          <h4>Total value: £{{ total_value }}</h4>
+          <div id="finance-chart">
+            <canvas id="myChart" width="200" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div id="team-rating">
-    <div id="rating-disc"></div>
-    <div id="hisorical-rating-graph"></div>
-  </div>
 
-  <div id="team-stats">
-    <h2>Team Stats</h2>
-    <h4>Goals: {{ goals_for }}</h4>
-    <h4>Matches played: {{ played }}</h4>
-    <h4>Wins: {{ win }}</h4>
-    <h4>Draws: {{ draw }}</h4>
-    <h4>Losses: {{ loss }}</h4>
 
-    <!-- have a graph of goals to games ratio -->
+
+
+    <div id="team-stats" class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Team Stats</h3>
+        </div>
+        <div class="panel-body">
+          <h2>Team Stats</h2>
+          <h4>Goals: {{ goals_for }}</h4>
+          <h4>Matches played: {{ played }}</h4>
+          <h4>Wins: {{ win }}</h4>
+          <h4>Draws: {{ draw }}</h4>
+          <h4>Losses: {{ loss }}</h4>
+        </div>
+      </div>
+    </div>
   </div>
 </script>
 

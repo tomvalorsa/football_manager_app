@@ -10,34 +10,35 @@ app.DashHomeView = Backbone.View.extend({
     var dashHomeViewHTML = _.template(dashHomeViewTemplate);
     this.$el.html(dashHomeViewHTML(app.userTeam));
 
-    // Will need to make an ajax request to a certain path here.
-    // That path needs to contain the info on the top scorers and assists etc.
+    var dataPoints = [];
+
+    $.get('/current-user-team-stats', function(result) {
+      dataPoints.push(result.win);
+      dataPoints.push(result.draw);
+      dataPoints.push(result.loss);
+
+    }).done(function() {
+      // debugger;
+      var data = {
+        labels: ["Wins", "Draws", "Losses"],
+        datasets: [
+          {
+            label: "My Second dataset",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: [dataPoints[0], dataPoints[1], dataPoints[2]]
+          }
+        ]
+      };
+
+      var $chart = $('#myChart');
+      var ctx = $chart.get(0).getContext('2d');
+      var financesLineChart = new Chart(ctx).Bar(data);
 
 
-    // Plug in some proper data here.
-    // Make an ajax request to a hidden page (make one up) which contains the current user's team's match array.
-    // Get these and use as data points for the graph below.
-
-    var data = {
-      labels: ["1", "2", "3", "4", "5", "6", "7"],
-      datasets: [
-        {
-          label: "My First dataset",
-          fillColor: "rgba(220,220,220,0.2)",
-          strokeColor: "rgba(220,220,220,1)",
-          pointColor: "rgba(220,220,220,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(220,220,220,1)",
-          data: [65, 59, 80, 81, 56, 55, 40]
-        }
-      ]
-    };
-
-    var $chart = $('#myChart');
-    var ctx = $chart.get(0).getContext('2d');
-    var financesLineChart = new Chart(ctx).Line(data);
-
-    $('#finance-chart').append(financesLineChart);
+      $('#finance-chart').append(financesLineChart);
+      });
   }
 });

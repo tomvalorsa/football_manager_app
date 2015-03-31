@@ -6,15 +6,11 @@ class PagesController < ApplicationController
     # binding.pry
   end
 
-  def match_script
-    # Match Script
+  def current_team_stats
 
-    # Find the right league.
+    @team = @current_user.team
+    render :json => @team
 
-    @league = League.first
-
-    @teams = @league.teams.order(:id)
-    binding.pry
-    render :json => @teams
   end
+
 end

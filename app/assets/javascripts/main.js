@@ -16,6 +16,12 @@ $(document).ready(function() {
     interpolate: /\{\{(.+?)\}\}/g
   };
 
+  app.users.fetch();
+  app.teams.fetch();
+  app.players.fetch();
+  app.tactics.fetch();
+  app.matches.fetch();
+
   app.leagues.fetch().done(function() {
     app.router = new app.Router();
     Backbone.history.start({pushState: false});
