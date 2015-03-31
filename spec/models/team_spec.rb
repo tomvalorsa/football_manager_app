@@ -15,6 +15,13 @@
 #  updated_at      :datetime         not null
 #  emblem          :text
 #  points          :integer          default(0)
+#  played          :integer          default(0)
+#  win             :integer          default(0)
+#  loss            :integer          default(0)
+#  draw            :integer          default(0)
+#  goals_for       :integer          default(0)
+#  goals_against   :integer          default(0)
+#  goal_difference :integer          default(0)
 #
 
 require 'rails_helper'

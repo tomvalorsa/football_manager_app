@@ -33,6 +33,7 @@ class MatchesController < ApplicationController
   end
 
   def run_game
+    # Currently runs through the leagues.each loop twice, even if there's only one league
     @leagues = League.all
 
     @leagues.each do |league|
@@ -42,21 +43,10 @@ class MatchesController < ApplicationController
       gameday_number += 1
       league.update(:gameday_number => gameday_number)
 
-      # Go into each league, get their Gameday model (or just columns in the league model. gameday_number and matches_per_gameday)
-      # Gameday should have a gameday_number (which will tell us what stage of the season the league is at)
-      # At the start of every match script the gameday should be increased by 1
-      # Then we can say get league.size/2 amount of matches from the array, starting at (gameday_number - 1)
-        # so on gameday 1, we can get matches_per_gameday amount of matches starting from the index of 0 in the array
-        # on gameday 2 it would start from index of 1 and retrieve a game that's already been played...
-        # FIX - this could instead be used to calculate how many times the loop needs to run below.
-      # Could fix this by having a games_played column in the league model
-        # This would keep a count of all of the games played (and would be updated with the models at the end of every match the script runs on)
-        # so on gameday 1, we can get games_played which will be 0. we can start from the index of games_played in the matches array
-          # for a league of 4 teams, this will means that we need 2 matches. at the end games_played will have been incremented by 2
-        # so on gameday 2, we can get games_played which will be 2. we can start from the index of games_played in the matches array
-          # this will get us index 2, so start from the 3rd match in the array, ignoring the first 2 that have already been played.
-
       # Run the following match program that many times.
+
+      # binding.pry
+
       league.matches_per_gameday.times do |i|
 
         # Get all of the matches for this league.
@@ -66,8 +56,10 @@ class MatchesController < ApplicationController
         matches_played = league.matches_played
 
         # Get the next match from the set to be played this game day.
-        # Doesn't skip teams out any more, just runs twice as many as needed.
+        # Doesn't skip teams out any more, just runs twice as many as needed...yay.
         current_match = @matches[matches_played]
+
+        # binding.pry
 
         # Retrieve the home and away team objects and their tactic models.
         home = Team.find current_match.home_team_id
@@ -126,6 +118,30 @@ class MatchesController < ApplicationController
         home_form_rating = home.form_rating
         away_form_rating = away.form_rating
 
+        home_played = home.played
+        away_played = away.played
+        home_win = home.win
+        away_win = away.win
+        home_loss = home.loss
+        away_loss = away.loss
+        home_draw = home.draw
+        away_draw = away.draw
+        home_goals_for = home.goals_for
+        away_goals_for = away.goals_for
+        home_goals_against = home.goals_against
+        away_goals_against = away.goals_against
+        home_goal_difference = home.goal_difference
+        away_goal_difference = away.goal_difference
+
+        home_played += 1
+        away_played += 1
+        home_goals_for += home_goals
+        away_goals_for += away_goals
+        home_goals_against += away_goals
+        away_goals_against += home_goals
+        home_goal_difference += (home_goals_for - home_goals_against)
+        away_goal_difference += (away_goals_for - away_goals_against)
+
         if home_goals > away_goals
           home_result += 'W'
           away_result += 'L'
@@ -134,6 +150,8 @@ class MatchesController < ApplicationController
           away_bank_balance += 500_000
           home_form_rating += 15
           away_form_rating -= 5
+          home_win += 1
+          away_loss += 1
         elsif away_goals > home_goals
           home_result += 'L'
           away_result += 'W'
@@ -142,6 +160,8 @@ class MatchesController < ApplicationController
           away_bank_balance += 2_000_000
           home_form_rating -= 5
           away_form_rating += 15
+          home_loss += 1
+          away_win += 1
         else
           home_result += 'D'
           away_result += 'D'
@@ -151,6 +171,8 @@ class MatchesController < ApplicationController
           away_bank_balance += 1_000_000
           home_form_rating += 5
           away_form_rating += 5
+          home_draw += 1
+          away_draw += 1
         end
 
         # Update league.matches_played so that next time round it will evaluate a new match/move on to the next one.
@@ -161,8 +183,8 @@ class MatchesController < ApplicationController
         current_match.update(:home_goals => home_goals, :away_goals => away_goals, :home_result => home_result, :away_result => away_result)
 
         # Update team objects with points and money.
-        home.update(:points => home_team_points, :bank_balance => home_bank_balance, :form_rating => home_form_rating)
-        away.update(:points => away_team_points, :bank_balance => away_bank_balance, :form_rating => away_form_rating)
+        home.update(:points => home_team_points, :bank_balance => home_bank_balance, :form_rating => home_form_rating, :played => home_played, :win => home_win, :loss => home_loss, :draw => home_draw, :goals_for => home_goals_for, :goals_against => home_goals_against, :goal_difference => home_goal_difference)
+        away.update(:points => away_team_points, :bank_balance => away_bank_balance, :form_rating => away_form_rating, :played => away_played, :win => away_win, :loss => away_loss, :draw => away_draw, :goals_for => away_goals_for, :goals_against => away_goals_against, :goal_difference => away_goal_difference)
 
         # Put the match object into the home and away teams' matches arrays so that they can access the stats.
         home.matches << current_match
