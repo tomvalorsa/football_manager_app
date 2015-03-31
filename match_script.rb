@@ -2,6 +2,11 @@
 
 @leagues.each do |league|
 
+  # Increment the gameday number for the current league.
+  gameday_number = league.gameday_number
+  gameday_number += 1
+  league.update(:gameday_number => gameday_number)
+
   # Go into each league, get their Gameday model (or just columns in the league model. gameday_number and matches_per_gameday)
   # Gameday should have a gameday_number (which will tell us what stage of the season the league is at)
   # At the start of every match script the gameday should be increased by 1
@@ -16,23 +21,17 @@
     # so on gameday 2, we can get games_played which will be 2. we can start from the index of games_played in the matches array
       # this will get us index 2, so start from the 3rd match in the array, ignoring the first 2 that have already been played.
 
-
-  # Get all of the matches for this league.
-  @matches = league.matches
-
-
-# Below seems fine. Need to sort out home to get the right matches above.
-#######################################################
-
-  # Find out how many games need to be run.
-  num_matches_per_gameday = league.size / 2
-
   # Run the following match program that many times.
-  num_matches_per_gameday.times do |i|
+  league.matches_per_gameday.times do |i|
 
-    # Get a match from the set to be played this game day.
-    # IS SHIFT THE RIGHT METHOD? Might take them out permanently. Just need to get a sample/slice.
-    current_match = @matches.shift
+    # Get all of the matches for this league.
+    @matches = league.matches.order(:id)
+
+    # Find the current number of matches played to use as an index to pick from league.matches.
+    matches_played = league.matches_played
+
+    # Get the next match from the set to be played this game day.
+    current_match = @matches[matches_played]
 
     # Retrieve the home and away team objects and their tactic models.
     home = Team.find current_match.home_team_id
@@ -109,6 +108,10 @@
       home_bank_balance += 1_000_000
       away_bank_balance += 1_000_000
     end
+
+    # Update league.matches_played so that next time round it will evaluate a new match/move on to the next one.
+    matches_played += 1
+    league.update(:matches_played => matches_played)
 
     # Update match object with stats.
     current_match.update(:home_goals => home_goals, :away_goals => away_goals, :home_result => home_result, :away_result => away_result)

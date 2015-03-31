@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Backbone SPA home.
   get '/dashboard' => 'pages#index'
 
+  get '/run-match-script' => 'matches#run_game'
 
 
   get '/match-script' => 'pages#match_script'
