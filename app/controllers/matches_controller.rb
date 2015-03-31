@@ -66,7 +66,7 @@ class MatchesController < ApplicationController
         matches_played = league.matches_played
 
         # Get the next match from the set to be played this game day.
-        # Might be the bit thats breaking, skipping over certain teams.
+        # Doesn't skip teams out any more, just runs twice as many as needed.
         current_match = @matches[matches_played]
 
         # Retrieve the home and away team objects and their tactic models.
