@@ -14,11 +14,13 @@ class LeaguesController < ApplicationController
 
   def create
     # binding.pry
+    matches_per_gameday = (params[:size].to_i / 2)
     @league = League.create({
       :name => params[:name],
       :emblem => params[:emblem],
       :nation => params[:nation],
-      :size => params[:size]
+      :size => params[:size],
+      :matches_per_gameday => matches_per_gameday
     })
     # When a league is created, make the teams:
     @league.size.times do |i|
@@ -180,6 +182,6 @@ class LeaguesController < ApplicationController
 
   private
   def league_params
-    params.require(:league).permit(:name, :nation, :size, :emblem)
+    params.require(:league).permit(:name, :nation, :size, :emblem, :gameday_number, :matches_per_gameday, :matches_played)
   end
 end

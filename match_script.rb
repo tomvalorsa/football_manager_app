@@ -1,11 +1,5 @@
 @leagues = League.all
 
-# This and the above needs to be reconsidered as this will get all of the matches every time.
-# Should make a copy of all of a leagues matches that I can take a slice out of each match day. Needs to remember that matches have been taken out.
-# This won't take them away from the league, but by having a copy of it that slowly decreases in size I can see how many games are left in the season.
-
-# N.B. @matches SHOULD BE A COPY OF THE MATCHES FOR EACH LEAGUE
-# Could maybe fix this by adding a gameday int to the league. Then it could shift of the right amount of games from a starting position (of gameday, ignoring the matches that have already been played...?)
 @leagues.each do |league|
 
   # Go into each league, get their Gameday model (or just columns in the league model. gameday_number and matches_per_gameday)
