@@ -9,7 +9,11 @@ app.PlayerListView = Backbone.View.extend({
 
     this.$el.html(playerListViewHTML(this.model.toJSON()));
 
-    $('#player-list').append(this.$el);
+    // This adds a class to all of the <tr>s, need to get this going for all of the monetary values.
+    // Give the right <td> an ID and use the money prettifier thing.
+    this.$el.addClass('suuuuuup');
 
+
+    $('#player-list').append(this.$el);
   }
 });

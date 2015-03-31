@@ -76,7 +76,7 @@
   </div>
   <div class="panel-body">
     <p>Team rating: {{ overall_rating }}</p>
-    <p>Bank balance: £{{ bank_balance }}</p>
+    <p class="team-list-bank-balance">Bank balance: {{ bank_balance }}</p>
   </div>
 </div>
 </script>
@@ -133,8 +133,14 @@ you can see the data. -->
           <h3 class="panel-title">Finances</h3>
         </div>
         <div class="panel-body">
-          <h4>Bank balance: £{{ bank_balance }}</h4>
-          <h4>Total value: £{{ total_value }}</h4>
+          <div class="col-md-6">
+            <h4>Bank balance:</h4>
+            <h3 id="home-balance">{{ bank_balance }}</h4>
+          </div>
+          <div class="col-md-6">
+            <h4>Total squad value:</h4>
+            <h3 id="home-value">{{ total_value }}</h4>
+          </div>
           <div id="finance-chart">
             <canvas id="myChart" width="200" height="200"></canvas>
           </div>
@@ -244,7 +250,7 @@ you can see the data. -->
     <td>{{ age }}</td>
     <td>{{ attack_rating }}</td>
     <td>{{ defence_rating }}</td>
-    <td>{{ value }}</td>
+    <td class="player-value">{{ value }}</td>
 </script>
 
 <!-- Dashboard league template -->

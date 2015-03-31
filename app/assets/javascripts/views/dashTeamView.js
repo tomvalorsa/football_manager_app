@@ -54,6 +54,12 @@ app.DashTeamView = Backbone.View.extend({
         var playerListView = new app.PlayerListView({model: player});
         playerListView.render();
       });
+    }).done(function() {
+      _.each($('.player-value'), function(td) {
+        // Makes the player values look nice.
+        td.innerHTML = accounting.formatMoney(td.innerHTML);
+      });
+
     });
   },
   updatePassing: function() {

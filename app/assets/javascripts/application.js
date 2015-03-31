@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require Chart
+//= require accounting
 //= require tablesorter
 //= require underscore
 //= require backbone

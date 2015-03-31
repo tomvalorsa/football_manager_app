@@ -27,6 +27,10 @@ app.ShowLeagueView = Backbone.View.extend({
         var teamListView = new app.TeamListView({model: team});
         teamListView.render();
       });
+    }).done(function() {
+      _.each($('.team-list-bank-balance'), function(p) {
+        p.innerHTML = accounting.formatMoney(p.innerHTML);
+      })
     });
   },
   navBack: function(e) {

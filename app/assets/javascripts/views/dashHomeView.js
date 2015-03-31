@@ -39,6 +39,10 @@ app.DashHomeView = Backbone.View.extend({
 
 
       $('#finance-chart').append(financesLineChart);
-      });
+
+      debugger;
+      $('#home-balance').html(accounting.formatMoney($('#home-balance').html()));
+      $('#home-value').html(accounting.formatMoney($('#home-value').html()));
+    });
   }
 });
