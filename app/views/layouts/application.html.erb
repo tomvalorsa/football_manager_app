@@ -32,8 +32,10 @@
         <% end %>
       </ul>
       <% if @current_user %>
-        <h4 class="navbar-form navbar-right">Welcome, <%= @current_user.username %> - <%= link_to 'Log out', login_path, :method => 'delete' %></h4>
-
+      <ul class="nav navbar-nav navbar-right">
+        <li><a><span style="color: steelblue; font-size: 15pt;"><%= @current_user.username %></span></a></li>
+        <li><%= link_to 'Log out', login_path, :method => 'delete' %></li>
+      </ul>
       <% else %>
         <%= form_tag login_path, :method => 'post', :class => "navbar-form navbar-right" do %>
           <div class="form-group form-group-sm">
