@@ -25,16 +25,20 @@
       <ul class="nav navbar-nav">
         <% if @current_user && @current_user.team %>
           <!-- add in class="active" to the <li> tags to get the idea you're on a certain page -->
-          <li><a href="#" id="dash-home">Dashboard</a></li>
-          <li><a href="#" id="dash-team">Team</a></li>
-          <li><a href="#" id="dash-league">League</a></li>
-          <li><a href="#" id="dash-settings">Settings</a></li>
+          <li><a href="#" id="dash-home"><i class="fa fa-futbol-o"></i> Dashboard</a></li>
+          <li><a href="#" id="dash-team"><i class="fa fa-users"></i> Team</a></li>
+          <li><a href="#" id="dash-league"><i class="fa fa-trophy"></i> League</a></li>
+          <li><a href="#" id="dash-settings"><i class="fa fa-wrench"></i> Settings</a></li>
         <% end %>
       </ul>
       <% if @current_user %>
       <ul class="nav navbar-nav navbar-right">
         <li><a><span style="color: steelblue; font-size: 15pt;"><%= @current_user.username %></span></a></li>
-        <li><%= link_to 'Log out', login_path, :method => 'delete' %></li>
+        <li>
+          <%= link_to login_path, :method => 'delete' do %>
+            <p><i class="fa fa-sign-out"></i> Sign out</p>
+          <% end %>
+        </li>
       </ul>
       <% else %>
         <%= form_tag login_path, :method => 'post', :class => "navbar-form navbar-right" do %>

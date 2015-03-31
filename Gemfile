@@ -35,6 +35,8 @@ group :production do
 end
 
 gem 'chart-js-rails'
+
+gem 'font-awesome-sass'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

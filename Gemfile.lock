@@ -73,6 +73,8 @@ GEM
     docile (1.1.5)
     erubis (2.7.0)
     execjs (2.4.0)
+    font-awesome-sass (4.3.1)
+      sass (~> 3.2)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -220,6 +222,7 @@ DEPENDENCIES
   byebug
   chart-js-rails
   coffee-rails (~> 4.1.0)
+  font-awesome-sass
   jbuilder (~> 2.0)
   jquery-rails
   meta_request
