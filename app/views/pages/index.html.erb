@@ -163,45 +163,49 @@ you can see the data. -->
 <!-- Dashboard team template -->
 <script type="x-underscore-template" id="dashTeamView-template">
   <div id="tactics-left" class="col-md-7">
-    <div id="info-div">
-      <img class="emblem" src="{{ emblem }}" alt="">
-      <h1>{{ name }}</h1>
-    </div>
 
     <div id="tactics-settings" class="text-center">
-      <label for="passing">Passing:</label>
-      <select id="passing">
-        <option selected="selected"></option>
-        <option value="short">short</option>
-        <option value="balanced">balanced</option>
-        <option value="long">long</option>
-      </select>
+      <div class="form-group col-md-3">
+        <label for="passing">Passing:</label>
+        <select id="passing" class="form-control">
+          <option selected="selected"></option>
+          <option value="short">short</option>
+          <option value="balanced">balanced</option>
+          <option value="long">long</option>
+        </select>
+      </div>
 
-      <label for="tackling">Tackling:</label>
-      <select id="tackling">
-        <option selected="selected"></option>
-        <option value="light">light</option>
-        <option value="balanced">balanced</option>
-        <option value="hard">hard</option>
-      </select>
+      <div class="form-group col-md-3">
+        <label for="tackling">Tackling:</label>
+        <select id="tackling" class="form-control">
+          <option selected="selected"></option>
+          <option value="light">light</option>
+          <option value="balanced">balanced</option>
+          <option value="hard">hard</option>
+        </select>
+      </div>
 
-      <label for="tempo">Tempo:</label>
-      <select id="tempo">
-        <option selected="selected"></option>
-        <option value="slow">slow</option>
-        <option value="balanced">balanced</option>
-        <option value="fast">fast</option>
-      </select>
+      <div class="form-group col-md-3">
+        <label for="tempo">Tempo:</label>
+        <select id="tempo" class="form-control">
+          <option selected="selected"></option>
+          <option value="slow">slow</option>
+          <option value="balanced">balanced</option>
+          <option value="fast">fast</option>
+        </select>
+      </div>
 
-      <label for="Formation">Formation:</label>
-      <select id="formation">
-        <option selected="selected"></option>
-        <option value="4-4-2">4-4-2</option>
-        <option value="4-3-3">4-3-3</option>
-        <option value="4-5-1">4-5-1</option>
-        <option value="4-1-2-1-2">4-1-2-1-2</option>
-        <option value="4-1-4-1">4-1-4-1</option>
-      </select>
+      <div class="form-group col-md-3">
+        <label for="Formation">Formation:</label>
+        <select id="formation" class="form-control">
+          <option selected="selected"></option>
+          <option value="4-4-2">4-4-2</option>
+          <option value="4-3-3">4-3-3</option>
+          <option value="4-5-1">4-5-1</option>
+          <option value="4-1-2-1-2">4-1-2-1-2</option>
+          <option value="4-1-4-1">4-1-4-1</option>
+        </select>
+      </div>
     </div>
 
     <div id="players">
@@ -221,6 +225,7 @@ you can see the data. -->
         <tbody id="player-list"></tbody>
       </table>
     </div>
+
   </div>
 
   <div id="tactics-right" class="col-md-5">
@@ -283,8 +288,13 @@ you can see the data. -->
 <!-- Dash settings template -->
 
 <script type="x-underscore-template" id="dashSettingsView-template">
-  <button id="team-settings-button" class="btn btn-default">Team Settings</button>
-  <button id="user-settings-button" class="btn btn-default">User Settings</button>
+  <div class="col-md-6 text-center" style="margin-top: 15em">
+    <button id="team-settings-button" class="btn btn-default" style="padding: 2em">Team Settings</button>
+  </div>
+
+  <div class="col-md-6 text-center" style="margin-top: 15em">
+    <button id="user-settings-button" class="btn btn-default" style="padding: 2em">User Settings</button>
+  </div>
 </script>
 
 

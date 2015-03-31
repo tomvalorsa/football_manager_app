@@ -63,6 +63,7 @@ class LeaguesController < ApplicationController
         # Could also generate a player potential rating like in FM which could help with player growth with experience from matches.
         attack = rand(59..90)
         defence = rand(59..90)
+        age = rand(18..33)
 
         value = ((attack + defence) / 2) * 500_000
 
@@ -70,7 +71,7 @@ class LeaguesController < ApplicationController
           :team_id => team.id,
           :first_name => first_array.sample,
           :last_name => last_array.sample,
-          :age => 24,
+          :age => age,
           :nationality => 'Italian',
           :attack_rating => attack,
           :defence_rating => defence,
