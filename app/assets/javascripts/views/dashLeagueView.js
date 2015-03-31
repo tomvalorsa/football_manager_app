@@ -2,6 +2,8 @@ var app = app || {};
 
 app.DashLeagueView = Backbone.View.extend({
   el: '#main',
+  events: {
+  },
   render: function() {
     this.$el.empty();
     var that = this;
@@ -22,6 +24,9 @@ app.DashLeagueView = Backbone.View.extend({
         var leagueStandingListView = new app.LeagueStandingListView({model: team});
         leagueStandingListView.render();
       })
+
+      $("#league-standings").tablesorter();
     });
+
   }
 });

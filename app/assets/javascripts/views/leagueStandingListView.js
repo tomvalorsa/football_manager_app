@@ -9,5 +9,6 @@ app.LeagueStandingListView = Backbone.View.extend({
 
     this.$el.html(leagueStandingListViewHTML(this.model.toJSON()));
     $('#league-standing-list').append(this.$el);
+
   }
 });

@@ -14,6 +14,7 @@ app.DashHomeView = Backbone.View.extend({
     // That path needs to contain the info on the top scorers and assists etc.
 
 
+    // Plug in some proper data here.
     var data = {
       labels: ["January", "February", "March", "April", "May", "June", "July"],
       datasets: [
@@ -26,23 +27,13 @@ app.DashHomeView = Backbone.View.extend({
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(220,220,220,1)",
           data: [65, 59, 80, 81, 56, 55, 40]
-        },
-        {
-          label: "My Second dataset",
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
-          data: [28, 48, 40, 19, 86, 27, 90]
         }
       ]
     };
 
     var $chart = $('#myChart');
     var ctx = $chart.get(0).getContext('2d');
-    var financesLineChart = new Chart(ctx).Line(data, options);
+    var financesLineChart = new Chart(ctx).Line(data);
 
     $('#finance-chart').append(financesLineChart);
   }
