@@ -1,7 +1,12 @@
-<h1>Home page</h1>
+<div id="home-container">
+  <div class="container">
+    <div class="jumbotron home-header text-center">
+      <h1>Online Football Manager</h1>
+      <p>Waste time at work and alienate your friends and loved ones as you lead your imaginary team to glory.</p>
+      <p><%= link_to 'Sign up', new_user_path, :class => "btn btn-primary btn-lg" %></p>
+    </div>
 
-<p>Super kewl game. Sign up below.</p>
 
-<%= link_to 'Sign up here', new_user_path %>
-
-<p class="text-center">&copy; 2015 Tom Valorsa</p>
+    <p class="text-right copyright">&copy; 2015 Tom Valorsa</p>
+  </div>
+</div>

@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -17,13 +17,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><b>Football Manager</b></a>
+      <a class="navbar-brand" href="#"><b>Online Football Manager</b></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if @current_user && @current_user.team %>
+          <!-- Should come back and do this with Backbone so that you don't have to refresh to see it -->
           <!-- add in class="active" to the <li> tags to get the idea you're on a certain page -->
           <li><a href="#" id="dash-home"><i class="fa fa-futbol-o"></i> Dashboard</a></li>
           <li><a href="#" id="dash-team"><i class="fa fa-users"></i> Team</a></li>
@@ -33,6 +34,7 @@
       </ul>
       <!-- Quick fix for the login predicament. Duplication here, needs to be cleaned up. -->
       <% if @current_user && @current_user.team %>
+      <!-- This also needs to be done in backbone -->
       <ul class="nav navbar-nav navbar-right">
         <li><a style="color: steelblue; font-size: 15pt;"><b><%= @current_user.username.capitalize %></b>: <%= @current_user.team.name %></a></li>
         <li>
@@ -69,9 +71,9 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container">
+
   <%= yield %>
-</div>
+
   <!-- in application.html.erb (or elsewhere) -->
 
 

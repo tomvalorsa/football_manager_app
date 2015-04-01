@@ -52,9 +52,11 @@ namespace :match do
 
         # Ratings:
         if home.overall_rating > away.overall_rating
-          home_chances += 1
-        elsif away.overall_rating > home.overall_rating
+          home_chances += 2
           away_chances += 1
+        elsif away.overall_rating > home.overall_rating
+          away_chances += 2
+          home_chances += 1
         end
 
         # Bonuses:
@@ -62,8 +64,8 @@ namespace :match do
         home_chances *= 2
 
         # Wildcard bonus:
-        home_chances *= rand(1..3)
-        away_chances *= rand(1..3)
+        home_chances *= rand(1..2)
+        away_chances *= rand(1..2)
 
         # Evaluation of chances:
         home_goals = 0

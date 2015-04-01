@@ -17,14 +17,15 @@
   <hr>
 <% end %>
 
-<div id="container">
+<div class="container">
   <div id="main"></div>
 </div>
 
 <!-- Templates for generating the setup process for new users -->
 
 <script type="x-underscore-template" id="pickLeague-template">
-  <h1>Leagues:</h1>
+  <h1><b>Step 1 - Join a league or make your own</b></h1>
+  <h2>Leagues:</h2>
   <div id="leagues"></div>
   <button id="add-league" class="btn btn-success">Add new league</button>
 </script>
@@ -75,11 +76,13 @@
 
 <!-- League show templates -->
 <script type="x-underscore-template" id="showLeague-template">
+  <h1><b>Step 2 - Choose a team to manage</b></h1>
   <div id="league-info">
     <h1>{{ name }}</h1>
     <h2>{{ nation }}</h2>
   </div>
-  <div id="teams" class="text-center"></div>
+  <div id="teams" class="text-center">
+  </div>
 
   <button id="back-to-league-selection" class="btn btn-default">Back to leagues</button>
 </script>
