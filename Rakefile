@@ -39,12 +39,13 @@ namespace :match do
         home_chances = 0
         away_chances = 0
 
-        # Form:
-        if home.form_rating > away.form_rating
-          home_chances += 1
-        elsif away.form_rating > home.form_rating
-          away_chances += 1
-        end
+        # This currently makes it unfair for teams on a bad run of form. This needs to be fixed.
+        # # Form:
+        # if home.form_rating > away.form_rating
+        #   home_chances += 1
+        # elsif away.form_rating > home.form_rating
+        #   away_chances += 1
+        # end
 
         # Ratings:
         if home.overall_rating > away.overall_rating
