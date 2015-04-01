@@ -31,7 +31,7 @@
           <li><a href="#" id="dash-settings"><i class="fa fa-wrench"></i> Settings</a></li>
         <% end %>
       </ul>
-      <% if @current_user %>
+      <% if @current_user && @current_user.team %>
       <ul class="nav navbar-nav navbar-right">
         <li><a style="color: steelblue; font-size: 15pt;"><b><%= @current_user.username.capitalize %></b>: <%= @current_user.team.name %></a></li>
         <li>
