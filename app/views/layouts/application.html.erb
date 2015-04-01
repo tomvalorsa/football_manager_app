@@ -63,23 +63,9 @@
   <%= yield %>
 </div>
   <!-- in application.html.erb (or elsewhere) -->
-  <% if @current_user %>
-    <script>
-      var app = app || {};
-      app.currentUser = <%== @current_user.to_json %>;
 
-      // Need this to test if the user has a league.
-      // CAN USER app.currentLeague instead!
-      // Maybe not...
 
-      <% if @current_user.team %>
-        app.userLeague = <%== @current_user.team.league.to_json %>;
-        app.userTeam = <%== @current_user.team.to_json %>;
-        app.userTeamPlayers = <%== @current_user.team.players.to_json %>
-        app.userTactic = <%== @current_user.team.tactic.to_json %>;
-      <% end %>
-    </script>
-  <% end %>
+
 
 
 </body>
