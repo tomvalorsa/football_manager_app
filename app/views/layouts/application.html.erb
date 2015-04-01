@@ -31,6 +31,7 @@
           <li><a href="#" id="dash-settings"><i class="fa fa-wrench"></i> Settings</a></li>
         <% end %>
       </ul>
+      <!-- Quick fix for the login predicament. Duplication here, needs to be cleaned up. -->
       <% if @current_user && @current_user.team %>
       <ul class="nav navbar-nav navbar-right">
         <li><a style="color: steelblue; font-size: 15pt;"><b><%= @current_user.username.capitalize %></b>: <%= @current_user.team.name %></a></li>
@@ -40,6 +41,15 @@
           <% end %>
         </li>
       </ul>
+      <% elsif @current_user %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a style="color: steelblue; font-size: 15pt;"><b><%= @current_user.username.capitalize %></b></a></li>
+          <li>
+            <%= link_to login_path, :method => 'delete' do %>
+              <p><i class="fa fa-sign-out"></i> Sign out</p>
+            <% end %>
+          </li>
+        </ul>
       <% else %>
         <%= form_tag login_path, :method => 'post', :class => "navbar-form navbar-right" do %>
           <div class="form-group form-group-sm">
