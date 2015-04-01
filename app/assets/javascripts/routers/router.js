@@ -25,7 +25,6 @@ app.Router = Backbone.Router.extend({
     addLeagueView.render();
   },
   renderShowLeagueView: function() {
-    // Need this to only get the ones with the right league id (i.e. relevant to this league).
     var showLeagueView = new app.ShowLeagueView({collection: app.teams});
     showLeagueView.render();
   },

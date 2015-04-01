@@ -18,27 +18,53 @@ app.DashHomeView = Backbone.View.extend({
       dataPoints.push(result.loss);
 
     }).done(function() {
-      // debugger;
-      var data = {
-        labels: ["Wins", "Draws", "Losses"],
+
+      var wldData = [
+        {
+          value: dataPoints[2],
+          color:"#F7464A",
+          highlight: "#FF5A5E",
+          label: "Losses"
+        },
+        {
+          value: dataPoints[0],
+          color: "#66bb6a",
+          highlight: "#a5d6a7",
+          label: "Wins"
+        },
+        {
+          value: dataPoints[1],
+          color: "#ffd54f",
+          highlight: "#ffe082",
+          label: "Draws"
+        }
+      ];
+
+      var $wldChart = $('#wldChart');
+      var wldCtx = $wldChart.get(0).getContext('2d');
+      var wldLineChart = new Chart(wldCtx).Doughnut(wldData);
+
+      $('#wld-chart').append(wldLineChart);
+
+      var financeData = {
+        labels: ["1", "2", "3", "4", "5"],
         datasets: [
           {
-            label: "My Second dataset",
-            fillColor: "rgba(151,187,205,0.5)",
-            strokeColor: "rgba(151,187,205,0.8)",
-            highlightFill: "rgba(151,187,205,0.75)",
-            highlightStroke: "rgba(151,187,205,1)",
-            data: [dataPoints[0], dataPoints[1], dataPoints[2]]
+            label: "My First dataset",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [app.userTeam.total_value, app.userTeam.total_value, app.userTeam.total_value]
           }
         ]
       };
 
-      var $chart = $('#wldChart');
-      var ctx = $chart.get(0).getContext('2d');
-      var wldLineChart = new Chart(ctx).Bar(data);
-
-
-      $('#wld-chart').append(wldLineChart);
+      var $financeChart = $('#financeChart');
+      var financeCtx = $financeChart.get(0).getContext('2d');
+      var financeChart = new Chart(financeCtx).Line(financeData);
 
       $('#home-balance').html(accounting.formatMoney($('#home-balance').html()));
       $('#home-value').html(accounting.formatMoney($('#home-value').html()));
@@ -48,21 +74,21 @@ app.DashHomeView = Backbone.View.extend({
 
       $('#star-rating').html(function() {
         if (rating < 20) {
-          return '<i class="fa fa-star-half-o"></i>';
+          return '<i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
         } else if (rating < 30) {
-          return '<i class="fa fa-star"></i>';
+          return '<i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
         } else if (rating < 40) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i>';
+          return '<i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
         } else if (rating < 50) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i>';
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
         } else if (rating < 60) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i>';
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
         } else if (rating < 70) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>';
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
         } else if (rating < 80) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i>';
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i>';
         } else if (rating < 90) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>';
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i>';
         } else if (rating < 100) {
           return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i>';
         } else if (rating === 100) {
