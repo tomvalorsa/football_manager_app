@@ -69,6 +69,12 @@ app.DashHomeView = Backbone.View.extend({
           return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>';
         }
       });
+
+      // Finds the current user's team's form rating and sets it as a percentage for the green fill div.
+      $('#form-bar-fill').attr('style', function() {
+        var form = app.userTeam.form_rating
+        return "background-color: #66bb6a; border-radius: 15px; height: 100%; padding: 0; width: " + form + "%;"
+      })
     });
   }
 });
