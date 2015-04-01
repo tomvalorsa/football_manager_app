@@ -56,7 +56,7 @@ class LeaguesController < ApplicationController
         # Later on this could be based on the league's nationality and I could also paste in the most common names for each country,
         # not just Italian legends.
         first_array = %w(Francesco Alessandro Andrea Lorenzo Matteo Gabriele Mattia Leonardo Davide Riccardo Federico Luca Giuseppe Marco Tommaso Antonio Simone Samuele Giovanni Pietro Christian Nicolo Alessio Edoardo Diego Filippo Emanuele Daniele Michele Cristian)
-        last_array = %w(Pirlo Totti Del_Piero Doni Barzagli Icardi Valorsa Tomassi Rossi Russo Ferrari Esposito Bianchi Romano Colombo Ricci Marino Greco Bruno Gallo Conti De_Luca Mancini Costa Giordano Rizzo Lombardi Moretti)
+        last_array = %w(Pirlo Totti Del\ Piero Doni Barzagli Icardi Valorsa Tomassi Rossi Russo Ferrari Esposito Bianchi Romano Colombo Ricci Marino Greco Bruno Gallo Conti De\ Luca Mancini Costa Giordano Rizzo Lombardi Moretti)
 
         # This only generates one random number but is reset every time in the loop
         # Need to eventually make higher ratings more rare.

@@ -29,7 +29,14 @@ app.DashLeagueView = Backbone.View.extend({
       $("#league-standings").tablesorter({
         sortList: [[9,1],[8,1],[6,1],[1,0]]
       });
+
+      // Temporary solution for filling the league position column.
+      // N.B. This doesn't have info from the model, the models themselves still need to have their league_position calculated somehow.
+      _.each($('.league-position'), function(td, i) {
+        td.innerHTML = (i + 1);
+      })
     });
+
 
   }
 });
