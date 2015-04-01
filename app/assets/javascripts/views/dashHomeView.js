@@ -33,16 +33,42 @@ app.DashHomeView = Backbone.View.extend({
         ]
       };
 
-      var $chart = $('#myChart');
+      var $chart = $('#wldChart');
       var ctx = $chart.get(0).getContext('2d');
-      var financesLineChart = new Chart(ctx).Bar(data);
+      var wldLineChart = new Chart(ctx).Bar(data);
 
 
-      $('#finance-chart').append(financesLineChart);
+      $('#wld-chart').append(wldLineChart);
 
-      debugger;
       $('#home-balance').html(accounting.formatMoney($('#home-balance').html()));
       $('#home-value').html(accounting.formatMoney($('#home-value').html()));
+
+
+      var rating = app.userTeam.overall_rating;
+
+      $('#star-rating').html(function() {
+        if (rating < 20) {
+          return '<i class="fa fa-star-half-o"></i>';
+        } else if (rating < 30) {
+          return '<i class="fa fa-star"></i>';
+        } else if (rating < 40) {
+          return '<i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i>';
+        } else if (rating < 50) {
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i>';
+        } else if (rating < 60) {
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i>';
+        } else if (rating < 70) {
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>';
+        } else if (rating < 80) {
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i>';
+        } else if (rating < 90) {
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>';
+        } else if (rating < 100) {
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i>';
+        } else if (rating === 100) {
+          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>';
+        }
+      });
     });
   }
 });

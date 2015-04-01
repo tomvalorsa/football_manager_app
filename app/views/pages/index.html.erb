@@ -108,7 +108,8 @@ you can see the data. -->
           <h3 class="panel-title">Team Rating</h3>
         </div>
         <div class="panel-body">
-          <h2>{{ overall_rating }}</h2>
+          <h1 class="col-md-2" style="line-height: 28px">{{ overall_rating }}</h1>
+          <h3 id="star-rating" class="col-md-10"></h3>
         </div>
       </div>
     </div>
@@ -133,17 +134,19 @@ you can see the data. -->
           <h3 class="panel-title">Finances</h3>
         </div>
         <div class="panel-body">
+
           <div class="col-md-6">
             <h4>Bank balance:</h4>
             <h3 id="home-balance">{{ bank_balance }}</h4>
           </div>
+
+
+
           <div class="col-md-6">
             <h4>Total squad value:</h4>
             <h3 id="home-value">{{ total_value }}</h4>
           </div>
-          <div id="finance-chart">
-            <canvas id="myChart" width="200" height="200"></canvas>
-          </div>
+
         </div>
       </div>
     </div>
@@ -154,12 +157,17 @@ you can see the data. -->
           <h3 class="panel-title">Team Stats</h3>
         </div>
         <div class="panel-body">
-          <h2>Team Stats</h2>
-          <h4>Goals: {{ goals_for }}</h4>
-          <h4>Matches played: {{ played }}</h4>
-          <h4>Wins: {{ win }}</h4>
-          <h4>Draws: {{ draw }}</h4>
-          <h4>Losses: {{ loss }}</h4>
+          <div class="col-md-6">
+            <br>
+            <h4>Goals: {{ goals_for }}</h4>
+            <h4>Matches played: {{ played }}</h4>
+            <h4>Wins: {{ win }}</h4>
+            <h4>Draws: {{ draw }}</h4>
+            <h4>Losses: {{ loss }}</h4>
+          </div>
+            <div id="wld-chart" class="col-md-6">
+              <canvas id="wldChart" width="200" height="200"></canvas>
+            </div>
         </div>
       </div>
     </div>
