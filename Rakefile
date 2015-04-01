@@ -26,6 +26,9 @@ namespace :match do
         # Find the current number of matches played to use as an index to pick from league.matches.
         matches_played = league.matches_played
 
+        # Checks to see if there are any matches left to run and returns if there are none.
+        raise 'There are no matches left to run' if @matches[matches_played] == nil
+
         # Get the next match from the set to be played this game day.
         current_match = @matches[matches_played]
 
@@ -150,13 +153,13 @@ namespace :match do
 
         # Update team objects with points and money.
         home.update(:points => home_team_points, :bank_balance => home_bank_balance, :form_rating => home_form_rating, :played => home_played, :win => home_win, :loss => home_loss, :draw => home_draw, :goals_for => home_goals_for, :goals_against => home_goals_against, :goal_difference => home_goal_difference)
+
         away.update(:points => away_team_points, :bank_balance => away_bank_balance, :form_rating => away_form_rating, :played => away_played, :win => away_win, :loss => away_loss, :draw => away_draw, :goals_for => away_goals_for, :goals_against => away_goals_against, :goal_difference => away_goal_difference)
 
         # Put the match object into the home and away teams' matches arrays so that they can access the stats.
         home.matches << current_match
         away.matches << current_match
       end
-
     end
   end
 end
