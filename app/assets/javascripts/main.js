@@ -16,13 +16,14 @@ $(document).ready(function() {
     interpolate: /\{\{(.+?)\}\}/g
   };
 
-  app.users.fetch();
-  app.teams.fetch();
-  app.players.fetch();
-  app.tactics.fetch();
-  app.matches.fetch();
+  var users = app.users.fetch();
+  var leagues = app.leagues.fetch();
+  var teams = app.teams.fetch();
+  var players = app.players.fetch();
+  var tactics = app.tactics.fetch();
+  var matches = app.matches.fetch();
 
-  app.leagues.fetch().done(function() {
+  $.when(users, leagues, teams, players, tactics, matches).then(function () {
     app.router = new app.Router();
     Backbone.history.start({pushState: false});
   });

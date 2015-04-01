@@ -19,9 +19,14 @@ app.TeamListView = Backbone.View.extend({
     var teamChoice = confirm('Are you sure?');
     if (teamChoice) {
       this.model.set('user_id', app.currentUser.id);
-      this.model.save();
-      console.log(this.model);
-    }
-    app.router.navigate('home', true);
+
+      // This line is the key to making it go straight to the dashboard without the need for a refresh.
+      // app.userTeam only gets the value by itself on a page refresh so we have to set it manually here.
+      app.userTeam = this.model.toJSON();
+
+      this.model.save().done(function() {
+        app.router.navigate('home', true);
+      });
+    };
   }
 });
