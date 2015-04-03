@@ -16,6 +16,7 @@ app.TeamListView = Backbone.View.extend({
   },
   pickTeam: function() {
     // Sets the chosen team's user_id to that of the current user, i.e. assigns team to the user.
+    // NEEDS TO ACTUALLY CHECK IF THE RESPONSE IS YES! Currently just checks if it's there so it's always true. Team even gets selected if the user clicks no.
     var teamChoice = confirm('Are you sure?');
     if (teamChoice) {
       this.model.set('user_id', app.currentUser.id);
@@ -25,7 +26,11 @@ app.TeamListView = Backbone.View.extend({
       app.userTeam = this.model.toJSON();
 
       this.model.save().done(function() {
+        // This makes sure the page refreshes when the user has picked a team. Looks a bit sloppy, but currently
+        // necessary so the Ruby conditional is triggered to reveal the nav for a logged in user who has a team.
+        // Set a timeout/delay on this?
         app.router.navigate('home', true);
+        window.location.reload();
       });
     };
   }
