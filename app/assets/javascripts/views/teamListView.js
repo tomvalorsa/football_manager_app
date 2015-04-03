@@ -30,7 +30,6 @@ app.TeamListView = Backbone.View.extend({
         // necessary so the Ruby conditional is triggered to reveal the nav for a logged in user who has a team.
         // Set a timeout/delay on this?
         app.router.navigate('home', true);
-        window.location.reload();
       });
     };
   }
