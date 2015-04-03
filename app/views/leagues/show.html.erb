@@ -16,7 +16,7 @@
             </div>
             <div class="panel-body">
               <p>Team rating: <%= team.overall_rating %></p>
-              <p class="team-list-bank-balance">Bank balance: <%= team.bank_balance %></p>
+              <p class="team-list-bank-balance">Bank balance: <%= number_to_currency(team.bank_balance, locale: :en) %></p>
             </div>
           </div>
         </a>
