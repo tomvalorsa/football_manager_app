@@ -1,0 +1,26 @@
+<div class="container">
+  <%= form_for @league do |f| %>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="league-name" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="emblem">Emblem:</label>
+      <input type="url" name="emblem" id="league-emblem" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="nation">Nation:</label>
+      <input type="text" name="nation" id="league-nation" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="size">No. of teams:</label>
+      <input type="number" name="size" id="league-size" class="form-control">
+    </div>
+
+    <button id="submit-league-form" class="btn btn-primary">Create league</button>
+
+  <% end %>
+</div>

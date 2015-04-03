@@ -8,17 +8,19 @@
   <div id="teams" class="text-center">
 
     <% @teams.each do |team| %>
-      <a class="pick-team" href="/dashboard#home" style="text-decoration: none;">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><%= team.name %></h3>
+      <% unless team.user_id %>
+        <a class="pick-team" href="/dashboard#home" style="text-decoration: none;" data-team-id="<%= team.id %>">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= team.name %></h3>
+            </div>
+            <div class="panel-body">
+              <p>Team rating: <%= team.overall_rating %></p>
+              <p class="team-list-bank-balance">Bank balance: <%= team.bank_balance %></p>
+            </div>
           </div>
-          <div class="panel-body">
-            <p>Team rating: <%= team.overall_rating %></p>
-            <p class="team-list-bank-balance">Bank balance: <%= team.bank_balance %></p>
-          </div>
-        </div>
-      </a>
+        </a>
+      <% end %>
     <% end %>
 
   </div>

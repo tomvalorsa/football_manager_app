@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   # Current user info:
   get '/info/current-user-team' => 'teams#user_info'
 
+  post '/set-user-team' => 'teams#set_user_team'
+
   # Session routes for user login.
   get '/login' => 'session#new'
   post '/login' => 'session#create'

@@ -9,7 +9,12 @@ class SessionController < ApplicationController
     @user = User.find_by :username => params[:username]
     if @user.present? && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to '/dashboard'
+
+      if @user.team
+        redirect_to '/dashboard'
+      else
+        redirect_to '/pick-league'
+      end
     else
       redirect_to new_user_path
     end

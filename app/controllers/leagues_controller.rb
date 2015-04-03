@@ -37,9 +37,6 @@ class LeaguesController < ApplicationController
         :emblem => ''
       })
 
-      # binding.pry
-      # Need an accurate number of players here.
-      # Also need to make names, positions and rating dynamic.
       # Create the players for each team:
       18.times do |i|
         if i < 2
@@ -117,7 +114,7 @@ class LeaguesController < ApplicationController
       )
     end
 
-    render :json => @league
+    redirect_to '/pick-league'
   end
 
   def show
