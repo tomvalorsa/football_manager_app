@@ -1,0 +1,23 @@
+<div class="container">
+  <h1><b>Step 1 - Join a league or make your own</b></h1>
+  <h2>Leagues:</h2>
+  <div id="leagues">
+
+    <% @leagues.each do |league| %>
+      <a href="<%= league_path(league.id) %>" style="text-decoration: none;">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= league.name %></h3>
+          </div>
+          <div class="panel-body">
+            <p>Nation: <%= league.nation %></p>
+            <p>Teams: <%= league.size %></p>
+            <p>Game day: <%= league.gameday_number %></p>
+          </div>
+        </div>
+      </a>
+    <% end %>
+
+  </div>
+  <a id="<%= new_league_path %>" class="btn btn-success">Add new league</a>
+</div>

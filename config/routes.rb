@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # Backbone SPA home.
   get '/dashboard' => 'pages#index'
 
-
+  get '/pick-league' => 'leagues#pick_league'
 
   get '/current-user-team-stats' => 'pages#current_team_stats'
 
