@@ -37,9 +37,6 @@ class LeaguesController < ApplicationController
         :emblem => ''
       })
 
-      # binding.pry
-      # Need an accurate number of players here.
-      # Also need to make names, positions and rating dynamic.
       # Create the players for each team:
       18.times do |i|
         if i < 2
@@ -117,52 +114,12 @@ class LeaguesController < ApplicationController
       )
     end
 
-    # # Need to loop though teams array and zip together home and away fixtures.
-    # @teams = @league.teams.order(:id).to_a
-    # num_team_matches = (@league.size * 2) - 2
-    # num_matches = num_team_matches * (@league.size / 2)
-    # num_teams = @teams.length
-
-    # copy_count = num_matches / num_teams
-
-    # home_team_array = []
-    # away_team_array = []
-
-    # copy_count.times do |i|
-    #   home_team_array << @teams
-    # end
-
-    # home_team_array.flatten!
-
-    # copy_count.times do |i|
-    #   away_team_array << @teams.rotate!.clone
-    # end
-
-    # away_team_array.flatten!
-
-    # # This is an array containing pairs of team objects, each pair represents a fixture for the season.
-    # fixture_pairings = home_team_array.zip(away_team_array)
-
-    # # Then they can be passed in to the loop below.
-    # # Then loop through update match objects with home and away team ids.
-    # @matches = @league.matches.order(:id)
-
-    # @matches.each_with_index do |match, i|
-    #   match.update(
-    #     :home_team_id => fixture_pairings[i][0].id,
-    #     :away_team_id => fixture_pairings[i][1].id
-    #   )
-    #   fixture_pairings[i][0].matches << match
-    #   fixture_pairings[i][1].matches << match
-    # end
-
-
-
-    render :json => @league
+    redirect_to '/pick-league'
   end
 
   def show
     @league = League.find params["id"]
+    @teams = @league.teams
   end
 
   def edit
@@ -179,6 +136,10 @@ class LeaguesController < ApplicationController
     @league = League.find params[:id]
     @league.destroy
     # redirect_to ...
+  end
+
+  def pick_league
+    @leagues = League.all
   end
 
   private

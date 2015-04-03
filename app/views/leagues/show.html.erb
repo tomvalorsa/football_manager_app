@@ -1,0 +1,30 @@
+<div class="container">
+
+<h1><b>Step 2 - Choose a team to manage</b></h1>
+  <div id="league-info">
+    <h1><%= @league.name %></h1>
+    <h2><%= @league.nation %></h2>
+  </div>
+  <div id="teams" class="text-center">
+
+    <% @teams.each do |team| %>
+      <% unless team.user_id %>
+        <a class="pick-team" href="/dashboard#home" style="text-decoration: none;" data-team-id="<%= team.id %>">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= team.name %></h3>
+            </div>
+            <div class="panel-body">
+              <p>Team rating: <%= team.overall_rating %></p>
+              <p class="team-list-bank-balance">Bank balance: <%= team.bank_balance %></p>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <a href="/pick-league" id="back-to-league-selection" class="btn btn-default">Back to leagues</a>
+
+</div>

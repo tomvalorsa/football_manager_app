@@ -62,6 +62,12 @@ class TeamsController < ApplicationController
     render :json => @team
   end
 
+  def set_user_team
+    # binding.pry
+    @team = Team.find params["team_id"]
+    @current_user.team = @team
+  end
+
   private
   def team_params
     params.require(:team).permit(:league_id, :user_id, :name, :overall_rating, :league_position, :total_value, :bank_balance, :form_rating, :emblem, :points)

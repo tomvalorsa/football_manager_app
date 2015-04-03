@@ -53,4 +53,10 @@ $(document).ready(function() {
     app.router.navigate('settings', true);
   });
 
+  $('.pick-team').click(function() {
+    $.post('/set-user-team', {
+      team_id: this.dataset.teamId
+    });
+  });
+
 });

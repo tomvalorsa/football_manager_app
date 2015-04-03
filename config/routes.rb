@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   # Backbone SPA home.
   get '/dashboard' => 'pages#index'
 
-
+  get '/pick-league' => 'leagues#pick_league'
 
   get '/current-user-team-stats' => 'pages#current_team_stats'
 
   # Current user info:
   get '/info/current-user-team' => 'teams#user_info'
+
+  post '/set-user-team' => 'teams#set_user_team'
 
   # Session routes for user login.
   get '/login' => 'session#new'
