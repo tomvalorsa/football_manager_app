@@ -59,4 +59,8 @@ $(document).ready(function() {
     });
   });
 
+  $('#submit-league-form').click(function() {
+    $('#loading').css('display', 'inline-block');
+  });
+
 });
