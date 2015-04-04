@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Teams:</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>League ID</th>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Overall Rating</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= team.id %></td>
+          <td><%= team.league_id %></td>
+          <td><%= team.user_id %></td>
+          <td><%= team.name %></td>
+          <td><%= team.overall_rating %></td>
+          <td><a href="<%= team_path(team.id) %>" data-confirm="Are you sure?" data-method="delete"><i class="fa fa-trash-o"></a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

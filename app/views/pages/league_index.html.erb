@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>Leagues:</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Nation</th>
+        <th>Number Of Teams</th>
+        <th>Gameday Number</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @leagues.each do |league| %>
+        <tr>
+          <td><%= league.id %></td>
+          <td><%= league.name %></td>
+          <td><%= league.nation %></td>
+          <td><%= league.size %></td>
+          <td><%= league.gameday_number %></td>
+          <td><a href="<%= edit_league_path(league.id) %>"><i class="fa fa-pencil"></i></a></td>
+          <td><a href="<%= league_path(league.id) %>" data-confirm="Are you sure?" data-method="delete"><i class="fa fa-trash-o"></a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -55,6 +55,7 @@ class TeamsController < ApplicationController
   def destroy
     @team = Team.find params[:id]
     @team.destroy
+    redirect_to '/manage-teams'
   end
 
   def user_info

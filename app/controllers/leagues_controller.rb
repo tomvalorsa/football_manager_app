@@ -138,13 +138,13 @@ class LeaguesController < ApplicationController
   def update
     @league = League.find params[:id]
     @league.update league_params
-    # redirect_to ...
+    redirect_to '/manage-leagues'
   end
 
   def destroy
     @league = League.find params[:id]
     @league.destroy
-    # redirect_to ...
+    redirect_to '/manage-leagues'
   end
 
   def pick_league

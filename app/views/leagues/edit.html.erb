@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Edit league:</h2>
+
+  <%= form_for @league do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :emblem %>
+      <%= f.text_field :emblem, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :nation %>
+      <%= f.text_field :nation, :class => 'form-control' %>
+    </div>
+
+    <button id="submit-league-form" class="btn btn-primary">Submit</button>
+
+<% end %>
+
+</div>
