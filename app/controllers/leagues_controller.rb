@@ -15,9 +15,18 @@ class LeaguesController < ApplicationController
   def create
     # binding.pry
     matches_per_gameday = (params[:size].to_i / 2)
+
+    # Set a default, need to go back and put this into the table with a migration.
+    # Maybe this is a better place to do it in case it needs to be changed in future.
+    if params[:emblem] == ''
+      league_emblem = 'http://www.clker.com/cliparts/d/8/9/b/1298268524507354096Trophy.svg.hi.png'
+    else
+      league_emblem = params[:emblem]
+    end
+
     @league = League.create({
       :name => params[:name],
-      :emblem => params[:emblem],
+      :emblem => league_emblem,
       :nation => params[:nation],
       :size => params[:size],
       :matches_per_gameday => matches_per_gameday
