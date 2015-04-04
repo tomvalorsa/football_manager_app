@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Users:</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>is_admin?</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.is_admin %></td>
+          <td><a href="<%= user_path(user.id) %>" data-confirm="Are you sure?" data-method="delete"><i class="fa fa-trash-o"></a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
