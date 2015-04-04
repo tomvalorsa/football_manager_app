@@ -128,7 +128,7 @@ class LeaguesController < ApplicationController
 
   def show
     @league = League.find params["id"]
-    @teams = @league.teams
+    @teams = @league.teams.sort
   end
 
   def edit
@@ -148,7 +148,7 @@ class LeaguesController < ApplicationController
   end
 
   def pick_league
-    @leagues = League.all
+    @leagues = League.order(:name)
   end
 
   private
