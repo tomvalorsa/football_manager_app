@@ -16,89 +16,7 @@
   <div id="main"></div>
 </div>
 
-<!-- Templates for generating the setup process for new users -->
-
-<script type="x-underscore-template" id="pickLeague-template">
-  <h1><b>Step 1 - Join a league or make your own</b></h1>
-  <h2>Leagues:</h2>
-  <div id="leagues"></div>
-  <button id="add-league" class="btn btn-success">Add new league</button>
-</script>
-
-<script type="x-underscore-template" id="leagueListView-template">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">{{ name }}</h3>
-    </div>
-    <div class="panel-body">
-      <p>Nation: {{ nation }}</p>
-      <p>Teams: {{ size }}</p>
-      <p>Game day: {{ gameday_number }}</p>
-    </div>
-  </div>
-</script>
-
-<script type="x-underscore-template" id="addLeagueView-template">
-  <form>
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="league-name" class="form-control">
-    </div>
-
-    <div class="form-group">
-      <label for="emblem">Emblem:</label>
-      <input type="url" name="emblem" id="league-emblem" class="form-control">
-    </div>
-
-    <div class="form-group">
-      <label for="nation">Nation:</label>
-      <input type="text" name="nation" id="league-nation" class="form-control">
-    </div>
-
-    <div class="form-group">
-      <label for="size">No. of teams:</label>
-      <input type="number" name="size" id="league-size" class="form-control">
-    </div>
-
-    <button id="submit-league-form" class="btn btn-primary">Create league</button>
-  </form>
-</script>
-
-<script type="x-underscore-template" id="generatingLeague-template">
-  <div>(put the loading animation here if there is time)</div>
-</script>
-
-
-<!-- League show templates -->
-<script type="x-underscore-template" id="showLeague-template">
-  <h1><b>Step 2 - Choose a team to manage</b></h1>
-  <div id="league-info">
-    <h1>{{ name }}</h1>
-    <h2>{{ nation }}</h2>
-  </div>
-  <div id="teams" class="text-center">
-  </div>
-
-  <button id="back-to-league-selection" class="btn btn-default">Back to leagues</button>
-</script>
-
-<script type="x-underscore-template" id="teamListView-template">
-  <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{ name }}</h3>
-  </div>
-  <div class="panel-body">
-    <p>Team rating: {{ overall_rating }}</p>
-    <p class="team-list-bank-balance">Bank balance: {{ bank_balance }}</p>
-  </div>
-</div>
-</script>
-
-
 <!-- Dashboard home template -->
-<!-- This conditional only works when the current user already has a team. If they don't then you have to refresh before
-you can see the data. -->
-<!-- REMOVE THIS ONCE BACKBONE DATA RETRIEVAL IS WORKING PROPERLY -->
 
 <script type="x-underscore-template" id="dashHomeView-template">
   <div class="row">
@@ -201,6 +119,7 @@ you can see the data. -->
 </script>
 
 <!-- Dashboard team template -->
+
 <script type="x-underscore-template" id="dashTeamView-template">
   <div id="tactics-left" class="col-md-7">
 
