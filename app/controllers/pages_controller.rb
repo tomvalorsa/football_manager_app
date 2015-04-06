@@ -4,7 +4,6 @@ class PagesController < ApplicationController
   end
 
   def index
-    # binding.pry
   end
 
   def current_team_stats

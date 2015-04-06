@@ -1,4 +1,5 @@
 <div class="container">
+
   <h1><b>Step 1 - Join a league</b></h1>
   <h2>Leagues:</h2>
   <div id="leagues" class="text-center">
@@ -28,4 +29,5 @@
   <% if @current_user.is_admin? %>
     <a href="<%= new_league_path %>" class="btn btn-success">Add new league</a>
   <% end %>
+
 </div>

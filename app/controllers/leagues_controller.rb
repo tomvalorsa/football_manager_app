@@ -13,11 +13,9 @@ class LeaguesController < ApplicationController
   end
 
   def create
-    # binding.pry
     matches_per_gameday = (params[:size].to_i / 2)
 
-    # Set a default, need to go back and put this into the table with a migration.
-    # Maybe this is a better place to do it in case it needs to be changed in future.
+    # Set default for league emblem in case user doesn't include their own.
     if params[:emblem] == ''
       league_emblem = 'http://www.clker.com/cliparts/d/8/9/b/1298268524507354096Trophy.svg.hi.png'
     else
@@ -107,13 +105,12 @@ class LeaguesController < ApplicationController
     matches_per_team = (@league.size * 2) - 2
     matches_per_league = matches_per_team * (@league.size / 2)
 
-    # Is this necessary? Test.
-    # require 'round_robin_tournament'
+    # Needs to be worked out for the second half of a season.
     @teams = @league.teams
     @team_ids = @teams.map {|team| team.id }
     pairs = RoundRobinTournament.schedule(@team_ids).flatten(1)
 
-    # pairs doesn't work below as it runs out of pairs of teams to supply, it needs twice as much for the home and away fixtures. FOR NOW I will leave it so each team plays each other only once (hence matches_per_league /2).
+    # pairs doesn't work below as it runs out of pairs of teams to supply, it needs twice as much for the home and away fixtures. FOR NOW I will leave it so each team plays each other only once (hence matches_per_league /2). See above comment.
 
     (matches_per_league / 2).times do |i|
       match = Match.create(
