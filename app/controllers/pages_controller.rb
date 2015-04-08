@@ -7,10 +7,8 @@ class PagesController < ApplicationController
   end
 
   def current_team_stats
-
     @team = @current_user.team
     render :json => @team
-
   end
 
   # Site management actions:

@@ -12,22 +12,6 @@ class TeamsController < ApplicationController
     render :json => @teams
   end
 
-  def new
-    @team = Team.new
-  end
-
-  def create
-    render :json => @team
-  end
-
-  def show
-    @team = Team.find params[:id]
-  end
-
-  def edit
-    @team = Team.find params[:id]
-  end
-
   def update
     @team = Team.find params[:id]
     @team.update(
@@ -35,7 +19,6 @@ class TeamsController < ApplicationController
       :name => params['name'],
       :emblem => params['emblem']
     )
-
     render :json => @team
   end
 

@@ -6,14 +6,12 @@ Rails.application.routes.draw do
   # Backbone SPA home.
   get '/dashboard' => 'pages#index'
 
+  # Setup links.
   get '/pick-league' => 'leagues#pick_league'
-
-  get '/current-user-team-stats' => 'pages#current_team_stats'
-
-  # Current user info:
-  get '/info/current-user-team' => 'teams#user_info'
-
   post '/set-user-team' => 'teams#set_user_team'
+
+  # Current user's team stats.
+  get '/current-user-team-stats' => 'pages#current_team_stats'
 
   # Admin site management links:
   get '/site-management' => 'pages#site_management'
