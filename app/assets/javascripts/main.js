@@ -54,6 +54,7 @@ $(document).ready(function() {
     app.router.navigate('settings', true);
   });
 
+  // Sets the current user's team choice upon sign up.
   $('.pick-team').click(function() {
     var that = this;
     $.post('/set-user-team', {
@@ -61,6 +62,7 @@ $(document).ready(function() {
     });
   });
 
+  // Displays the loading animation while a league is being generated.
   $('#submit-league-form').click(function() {
     $('#loading').css('display', 'inline-block');
   });

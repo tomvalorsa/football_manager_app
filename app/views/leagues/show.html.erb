@@ -10,7 +10,7 @@
 
     <% @teams.each do |team| %>
       <% unless team.user_id %>
-        <a class="pick-team" href="/dashboard#home" style="text-decoration: none;" data-team-id="<%= team.id %>">
+        <a class="pick-team" href="/dashboard#home" style="text-decoration: none;" data-team-id="<%= team.id %>" data-confirm="Are you sure you want to manage this team?">
           <div class="panel panel-default pick-league-panel">
             <div class="panel-heading">
               <h3 class="panel-title"><%= team.name %></h3>
