@@ -11,7 +11,7 @@ class SessionController < ApplicationController
       session[:user_id] = @user.id
 
       if @user.team
-        redirect_to '/dashboard'
+        redirect_to '/dashboard#home'
       else
         redirect_to '/pick-league'
       end
