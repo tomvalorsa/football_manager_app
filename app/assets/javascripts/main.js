@@ -23,6 +23,7 @@ $(document).ready(function() {
   var tactics = app.tactics.fetch();
   var matches = app.matches.fetch();
 
+  // Nicer way to fetch everything together and then start Backbone.history when it's done.
   $.when(users, leagues, teams, players, tactics, matches).then(function () {
     app.router = new app.Router();
     Backbone.history.start({pushState: false});
@@ -54,8 +55,9 @@ $(document).ready(function() {
   });
 
   $('.pick-team').click(function() {
+    var that = this;
     $.post('/set-user-team', {
-      team_id: this.dataset.teamId
+      team_id: that.dataset.teamId
     });
   });
 

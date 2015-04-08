@@ -2,13 +2,10 @@
   <script>
     var app = app || {};
     app.currentUser = <%== @current_user.to_json %>;
-
-    <% if @current_user.team %>
-      app.userLeague = <%== @current_user.team.league.to_json %>;
-      app.userTeam = <%== @current_user.team.to_json %>;
-      app.userTeamPlayers = <%== @current_user.team.players.to_json %>
-      app.userTactic = <%== @current_user.team.tactic.to_json %>;
-    <% end %>
+    app.userLeague = <%== @current_user.team.league.to_json %>;
+    app.userTeam = <%== @current_user.team.to_json %>;
+    app.userTeamPlayers = <%== @current_user.team.players.to_json %>
+    app.userTactic = <%== @current_user.team.tactic.to_json %>;
   </script>
 <% end %>
 
