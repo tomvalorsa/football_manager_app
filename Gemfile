@@ -37,6 +37,10 @@ end
 gem 'chart-js-rails'
 
 gem 'font-awesome-sass'
+
+gem 'mandrill-api'
+
+gem 'dotenv-rails', :groups => [:development, :test]
 # Use Unicorn as the app server
 # gem 'unicorn'
 

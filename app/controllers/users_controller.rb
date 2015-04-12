@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  require 'mandrill'
+
   def index
     @users = User.all
     render :json => @users
@@ -12,6 +14,30 @@ class UsersController < ApplicationController
     @user = User.create user_params
     if @user.save
       session[:user_id] = @user.id
+
+      # Send user an email upon sign up.
+      m = Mandrill::API.new(ENV['MANDRILL_API_KEY'])
+      message = {
+      :subject=> "Welcome to OFM",
+      :from_name=> "The Scout - Online Football Manager",
+      :text=>"Hi #{@user.username},
+
+      Welcome to Online Football Manager. Remember to set your team up tactically every day before your scheduled match.
+
+      Best of luck,
+
+      The Scout",
+      :to=>[
+      {
+      :email=> @user.email,
+      :name=> @user.username
+      }
+      ],
+      :from_email=>"thescout@ofm.com"
+      }
+      sending = m.messages.send message
+
+
       redirect_to '/pick-league'
     else
       render :new
