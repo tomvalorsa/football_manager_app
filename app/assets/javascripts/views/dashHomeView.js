@@ -16,7 +16,7 @@ app.DashHomeView = Backbone.View.extend({
       // i.e. matches they have played.
 
       // Gets the last 5 results from the user's team's match array.
-      var recentMatches = result.slice(0, 5);
+      var recentMatches = result.slice(Math.max(arr.length - 5, 1));
 
       // Use recentMatches here instead of a direct slice to make the check for the last array item dynamic.
       // Needs to be cleaned up, this is kinda ugly. Works for now.
