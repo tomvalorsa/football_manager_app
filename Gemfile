@@ -40,7 +40,7 @@ gem 'font-awesome-sass'
 
 gem 'mandrill-api'
 
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
