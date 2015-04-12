@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :users, :leagues, :teams, :players, :tactics, :matches
 
+  get '/how-to-play' => 'pages#how_to_play'
+
   # Backbone SPA home.
   get '/dashboard' => 'pages#index'
 

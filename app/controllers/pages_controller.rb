@@ -3,6 +3,9 @@ class PagesController < ApplicationController
     redirect_to '/dashboard#home' if @current_user
   end
 
+  def how_to_play
+  end
+
   def index
     unless @current_user.team
       redirect_to pick_league_path
