@@ -130,8 +130,23 @@
   </div>
 </script>
 
+
+
 <script type="x-underscore-template" id="matchListView-template">
-  <span class="home-team"><b>{{ home_team }}</b></span> <span class="badge">{{ home_goals }} - {{ away_goals }}</span> <span class="away-team"><b>{{ away_team }}</b></span>
+  <div class="row">
+    <div class="home text-left col-md-5">
+      <span class="home-team"><b>{{ home_team }}</b></span>
+    </div>
+
+    <div class="score col-md-2" style="margin-left: -15px;">
+      <span class="badge">{{ home_goals }} - {{ away_goals }}</span>
+    </div>
+
+    <div class="away text-right col-md-5">
+      <span class="away-team"><b>{{ away_team }}</b></span>
+    </div>
+  </div>
+
   <hr>
 </script>
 

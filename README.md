@@ -7,7 +7,7 @@ Disclaimer: This is a non-commercial project that I created to get a better feel
 This app is a football management simulation game where users can choose a team to manage and set them up tactically for matches against other users. The users' tactics, among other things, are evaluated in a daily match (rake task) where two teams are matched up and a winner is decided. This then updates stats within the database which in turn updates statistical info on the site.
 
 ##Technologies used:
-This app has a Ruby on Rails back-end with the majority of the front-end being made up of Backbone.js.
+This app is build with Backbone.js and uses Ruby on Rails as a back-end and API.
 
 - Ruby
 - Rails
@@ -17,6 +17,7 @@ This app has a Ruby on Rails back-end with the majority of the front-end being m
 - Chart.js
 - Accounting.js (for prettified monetary amounts)
 - Tablesorter.js (for league table)
+- Mandrill
 - Postgres
 - RSpec
 

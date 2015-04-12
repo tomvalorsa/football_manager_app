@@ -9,7 +9,6 @@ app.MatchListView = Backbone.View.extend({
 
     this.$el.html(matchListViewHTML(this.model));
 
-    debugger;
     $('#matches-played').append(this.$el);
   }
 });
