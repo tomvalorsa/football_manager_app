@@ -17,6 +17,8 @@
 #  man_of_match    :string           default("")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  home_team       :string
+#  away_team       :string
 #
 
 require 'rails_helper'

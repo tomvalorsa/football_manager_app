@@ -26,7 +26,7 @@
           <h3 class="panel-title">Team Info</h3>
         </div>
         <div class="panel-body">
-          <div class="col-md-6">
+          <div class="col-md-6" style="height: 211px;">
             <img class="emblem" src="{{ emblem }}" alt="" id="team-emblem">
             <h2><b id="team-name">{{ name }}</b></h2>
             <p>Manager: <%= @current_user.username.capitalize %></p>
@@ -70,14 +70,13 @@
 
   <div class="row">
 
-    <div id="finances" class="col-md-6">
+    <div id="finances" class="col-md-3">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Finances</h3>
         </div>
-        <div class="panel-body">
-          <div class="col-md-6">
-
+        <div class="panel-body text-center">
+          <div style="height: 205px; padding-top: 15px;">
             <div class="col-md-12">
               <h4>Bank balance:</h4>
               <h3 id="home-balance">{{ bank_balance }}</h4>
@@ -87,16 +86,18 @@
               <h4>Total squad value:</h4>
               <h3 id="home-value">{{ total_value }}</h4>
             </div>
+        </div>
+        </div>
+      </div>
+    </div>
 
-          </div>
-
-          <div class="col-md-6">
-
-              <div class="col-md-6">
-                <canvas id="financeChart" width="200" height="200"></canvas>
-              </div>
-          </div>
-
+    <div id="matches" class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Matches</h3>
+        </div>
+        <div class="panel-body">
+          <div id="matches-played" class="text-center" style="height: 205px; overflow: auto;"></div>
         </div>
       </div>
     </div>
@@ -124,6 +125,13 @@
 
   </div>
 </script>
+
+<script type="x-underscore-template" id="matchListView-template">
+  <span class="home-team"><b>{{ home_team }}</b></span> <span class="badge">{{ home_goals }} - {{ away_goals }}</span> <span class="away-team"><b>{{ away_team }}</b></span>
+  <hr>
+</script>
+
+
 
 <!-- Dashboard team template -->
 

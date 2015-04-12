@@ -16,7 +16,7 @@ app.DashHomeView = Backbone.View.extend({
       // i.e. matches they have played.
 
       // Gets the last 5 results from the user's team's match array.
-      var recentMatches = result.slice(Math.max(result.length - 5, 1));
+      var recentMatches = result.slice(Math.max(result.length - 5, 0));
 
       // Use recentMatches here instead of a direct slice to make the check for the last array item dynamic.
       // Needs to be cleaned up, this is kinda ugly. Works for now.
@@ -34,6 +34,12 @@ app.DashHomeView = Backbone.View.extend({
             $('#recent-results').append(match.away_result + ' - ');
           }
         }
+      });
+
+      // Throw up the all matches with teams and scores to the dash.
+      _.each(result, function(match) {
+        var matchListView = new app.MatchListView({model: match});
+        matchListView.render();
       });
 
     });
@@ -73,26 +79,6 @@ app.DashHomeView = Backbone.View.extend({
       var wldLineChart = new Chart(wldCtx).Doughnut(wldData);
 
       $('#wld-chart').append(wldLineChart);
-
-      var financeData = {
-        labels: ["1", "2", "3", "4", "5"],
-        datasets: [
-          {
-            label: "My First dataset",
-            fillColor: "rgba(151,187,205,0.2)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [app.userTeam.total_value, app.userTeam.total_value, app.userTeam.total_value]
-          }
-        ]
-      };
-
-      var $financeChart = $('#financeChart');
-      var financeCtx = $financeChart.get(0).getContext('2d');
-      var financeChart = new Chart(financeCtx).Line(financeData);
 
       $('#home-balance').html(accounting.formatMoney($('#home-balance').html()));
       $('#home-value').html(accounting.formatMoney($('#home-value').html()));

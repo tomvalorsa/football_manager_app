@@ -108,7 +108,9 @@ class LeaguesController < ApplicationController
     # Needs to be worked out for the second half of a season.
     @teams = @league.teams
     @team_ids = @teams.map {|team| team.id }
+    @team_names = @teams.map {|team| team.name }
     pairs = RoundRobinTournament.schedule(@team_ids).flatten(1)
+    name_pairs = RoundRobinTournament.schedule(@team_names).flatten(1)
 
     # pairs doesn't work below as it runs out of pairs of teams to supply, it needs twice as much for the home and away fixtures. FOR NOW I will leave it so each team plays each other only once (hence matches_per_league /2). See above comment.
 
@@ -116,7 +118,9 @@ class LeaguesController < ApplicationController
       match = Match.create(
         league_id: @league.id,
         home_team_id: pairs[i][0],
-        away_team_id: pairs[i][1]
+        away_team_id: pairs[i][1],
+        home_team: name_pairs[i][0],
+        away_team: name_pairs[i][1]
       )
     end
 
