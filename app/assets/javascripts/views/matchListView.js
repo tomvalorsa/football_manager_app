@@ -1,7 +1,7 @@
 var app = app || {};
 
 app.MatchListView = Backbone.View.extend({
-  tagName: 'h4',
+  tagName: 'h6',
   render: function() {
     this.$el.empty();
     var matchListViewTemplate = $('#matchListView-template').html();
@@ -9,6 +9,7 @@ app.MatchListView = Backbone.View.extend({
 
     this.$el.html(matchListViewHTML(this.model));
 
+    debugger;
     $('#matches-played').append(this.$el);
   }
 });

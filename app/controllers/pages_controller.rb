@@ -17,6 +17,17 @@ class PagesController < ApplicationController
   def user_match_data
     @team = @current_user.team
     @matches = @team.matches
+
+    # Makes sure that the matches will have the right team names if
+    # the user decides to update their team name via Backbone.
+    @matches.each do |match|
+      if match.home_team_id == @current_user.team.id
+        match.update(:home_team => @current_user.team.name)
+      elsif match.away_team_id == @current_user.team.id
+        match.update(:away_team => @current_user.team.name)
+      end
+    end
+
     render :json => @matches
   end
 

@@ -27,12 +27,16 @@
         </div>
         <div class="panel-body">
           <div class="col-md-6" style="height: 211px;">
-            <img class="emblem" src="{{ emblem }}" alt="" id="team-emblem">
             <h2><b id="team-name">{{ name }}</b></h2>
             <p>Manager: <%= @current_user.username.capitalize %></p>
+            <br>
+            <br>
+            <div id="team-recent-results">
+              <h3 id="recent-results"></h3>
+            </div>
           </div>
-          <div class="col-md-6" id="team-recent-results">
-            <h3 id="recent-results"></h3>
+          <div class="col-md-6 text-right">
+            <img class="emblem" src="{{ emblem }}" alt="" id="team-emblem">
           </div>
         </div>
       </div>
