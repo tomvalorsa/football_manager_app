@@ -146,6 +146,12 @@ namespace :match do
           away_draw += 1
         end
 
+        home_form_rating = 100 if home_form_rating > 100
+        home_form_rating = 0 if home_form_rating < 0
+        away_form_rating = 100 if away_form_rating > 100
+        away_form_rating = 0 if away_form_rating < 0
+
+
         # Update league.matches_played so that next time round it will evaluate a new match/move on to the next one.
         matches_played += 1
         league.update(:matches_played => matches_played)
