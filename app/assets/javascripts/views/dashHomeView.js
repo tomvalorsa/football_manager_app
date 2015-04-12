@@ -4,7 +4,6 @@ app.DashHomeView = Backbone.View.extend({
   el: '#main',
   render: function() {
     this.$el.empty();
-    console.log('This is where the main dashboard should go');
 
     var dashHomeViewTemplate = $('#dashHomeView-template').html();
     var dashHomeViewHTML = _.template(dashHomeViewTemplate);
@@ -13,6 +12,8 @@ app.DashHomeView = Backbone.View.extend({
     var dataPoints = [];
 
     $.get('/current-user-team-stats', function(result) {
+      $('#team-emblem').attr('src', result.emblem);
+      $('#team-name').html(result.name);
       dataPoints.push(result.win);
       dataPoints.push(result.draw);
       dataPoints.push(result.loss);

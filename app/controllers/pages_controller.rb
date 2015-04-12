@@ -4,6 +4,9 @@ class PagesController < ApplicationController
   end
 
   def index
+    unless @current_user.team
+      redirect_to pick_league_path
+    end
   end
 
   def current_team_stats

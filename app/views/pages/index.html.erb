@@ -2,10 +2,12 @@
   <script>
     var app = app || {};
     app.currentUser = <%== @current_user.to_json %>;
-    app.userLeague = <%== @current_user.team.league.to_json %>;
-    app.userTeam = <%== @current_user.team.to_json %>;
-    app.userTeamPlayers = <%== @current_user.team.players.to_json %>
-    app.userTactic = <%== @current_user.team.tactic.to_json %>;
+    <% if @current_user.team %>
+      app.userLeague = <%== @current_user.team.league.to_json %>;
+      app.userTeam = <%== @current_user.team.to_json %>;
+      app.userTeamPlayers = <%== @current_user.team.players.to_json %>
+      app.userTactic = <%== @current_user.team.tactic.to_json %>;
+    <% end %>
   </script>
 <% end %>
 
@@ -25,7 +27,7 @@
         </div>
         <div class="panel-body">
           <img class="emblem" src="{{ emblem }}" alt="" id="team-emblem">
-          <h2>{{ name }}</h2>
+          <h2 id="team-name">{{ name }}</h2>
           <p>Manager: <%= @current_user.username.capitalize %></p>
         </div>
       </div>

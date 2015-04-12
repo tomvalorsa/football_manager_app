@@ -27,7 +27,11 @@ app.TeamSettingsView = Backbone.View.extend({
       'name': teamName,
       'emblem': teamEmblem
     });
-    team.save().done(function() {
+    team.save().done(function(response) {
+      // debugger;
+      app.userTeam = response;
+      // Sets the user's nav heading to show their new team name with the changed value.
+      $('#user-team-header').html(response.name);
       app.router.navigate('settings', true);
     });
   },
