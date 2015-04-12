@@ -11,6 +11,33 @@ app.DashHomeView = Backbone.View.extend({
 
     var dataPoints = [];
 
+    $.get('/user-match-data', function(result) {
+      // 'result' here is an array of match objects that belong to the user's team,
+      // i.e. matches they have played.
+
+      // Gets the last 5 results from the user's team's match array.
+      var recentMatches = result.slice(0, 5);
+
+      // Use recentMatches here instead of a direct slice to make the check for the last array item dynamic.
+      // Needs to be cleaned up, this is kinda ugly. Works for now.
+      _.each(recentMatches, function(match, i) {
+        if(match.home_team_id === app.userTeam.id) {
+          if(match === _.last(recentMatches)) {
+            $('#recent-results').append(match.home_result);
+          } else {
+            $('#recent-results').append(match.home_result + ' - ');
+          }
+        } else if(match.away_team_id === app.userTeam.id) {
+          if(match === _.last(recentMatches)) {
+            $('#recent-results').append(match.away_result);
+          } else {
+            $('#recent-results').append(match.away_result + ' - ');
+          }
+        }
+      });
+
+    });
+
     $.get('/current-user-team-stats', function(result) {
       $('#team-emblem').attr('src', result.emblem);
       $('#team-name').html(result.name);

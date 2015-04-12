@@ -14,6 +14,12 @@ class PagesController < ApplicationController
     render :json => @team
   end
 
+  def user_match_data
+    @team = @current_user.team
+    @matches = @team.matches
+    render :json => @matches
+  end
+
   # Site management actions:
   def site_management
     check_if_admin

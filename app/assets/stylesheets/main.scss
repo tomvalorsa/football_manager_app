@@ -44,3 +44,14 @@ body {
   height: 150px;
   display: inline-block;
 }
+
+#team-recent-results {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  position: relative;
+  top: 123px;
+}
+
+#team-recent-results h3 {
+  margin: 0;
+}

@@ -26,9 +26,14 @@
           <h3 class="panel-title">Team Info</h3>
         </div>
         <div class="panel-body">
-          <img class="emblem" src="{{ emblem }}" alt="" id="team-emblem">
-          <h2 id="team-name">{{ name }}</h2>
-          <p>Manager: <%= @current_user.username.capitalize %></p>
+          <div class="col-md-6">
+            <img class="emblem" src="{{ emblem }}" alt="" id="team-emblem">
+            <h2><b id="team-name">{{ name }}</b></h2>
+            <p>Manager: <%= @current_user.username.capitalize %></p>
+          </div>
+          <div class="col-md-6" id="team-recent-results">
+            <h3 id="recent-results"></h3>
+          </div>
         </div>
       </div>
     </div>

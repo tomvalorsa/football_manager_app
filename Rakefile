@@ -5,7 +5,7 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-namespace :match do
+namespace :matchday do
   desc "Run the match script"
   task :run => :environment do
     @leagues = League.all
