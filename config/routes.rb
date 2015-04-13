@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # Current user's team stats.
   get '/current-user-team-stats' => 'pages#current_team_stats'
   get '/user-match-data' => 'pages#user_match_data'
+  get '/user-tactic-data' => 'pages#user_tactic_data'
 
   # Admin site management links:
   get '/site-management' => 'pages#site_management'

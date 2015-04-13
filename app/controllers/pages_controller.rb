@@ -34,6 +34,11 @@ class PagesController < ApplicationController
     render :json => @matches
   end
 
+  def user_tactic_data
+    @tactic = @current_user.team.tactic
+    render :json => @tactic
+  end
+
   # Site management actions:
   def site_management
     check_if_admin

@@ -10,7 +10,6 @@ app.DashTeamView = Backbone.View.extend({
   },
   render: function() {
     this.$el.empty();
-    console.log('rendering the dash team view');
     var that = this;
 
     app.players.fetch({
@@ -50,6 +49,28 @@ app.DashTeamView = Backbone.View.extend({
         }
       });
 
+      // Pre-populate tactics options.
+      _.each($('.tactics'), function(select, i) {
+        _.each(select.children, function(option, j) {
+          switch (option.value) {
+            case app.userTactic.passing:
+              option.selected = true;
+              break;
+            case app.userTactic.tackling:
+              option.selected = true;
+              break;
+            case app.userTactic.tempo:
+              option.selected = true;
+              break;
+            case app.userTactic.formation:
+              option.selected = true;
+              break;
+            default:
+              option.selected = false;
+          }
+        });
+      });
+
       that.collection.each(function(player) {
         var playerListView = new app.PlayerListView({model: player});
         playerListView.render();
@@ -59,12 +80,15 @@ app.DashTeamView = Backbone.View.extend({
         // Makes the player values look nice.
         td.innerHTML = accounting.formatMoney(td.innerHTML);
       });
-
     });
   },
   updatePassing: function() {
     var passing = $('#passing').val();
     var tactic = app.tactics.get(app.userTactic.id);
+
+    $.get('/user-tactic-data', function(response) {
+      app.userTactic = response;
+    });
 
     tactic.set({'passing': passing});
     tactic.save();
@@ -73,6 +97,10 @@ app.DashTeamView = Backbone.View.extend({
     var tackling = $('#tackling').val();
     var tactic = app.tactics.get(app.userTactic.id);
 
+    $.get('/user-tactic-data', function(response) {
+      app.userTactic = response;
+    });
+
     tactic.set({'tackling': tackling});
     tactic.save();
   },
@@ -80,12 +108,20 @@ app.DashTeamView = Backbone.View.extend({
     var tempo = $('#tempo').val();
     var tactic = app.tactics.get(app.userTactic.id);
 
+    $.get('/user-tactic-data', function(response) {
+      app.userTactic = response;
+    });
+
     tactic.set({'tempo': tempo});
     tactic.save();
   },
   updateFormation: function() {
     var formation = $('#formation').val();
     var tactic = app.tactics.get(app.userTactic.id);
+
+    $.get('/user-tactic-data', function(response) {
+      app.userTactic = response;
+    });
 
     tactic.set({'formation': formation});
 
