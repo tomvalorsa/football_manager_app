@@ -16,15 +16,15 @@ $(document).ready(function() {
     interpolate: /\{\{(.+?)\}\}/g
   };
 
-  var users = app.users.fetch();
-  var leagues = app.leagues.fetch();
-  var teams = app.teams.fetch();
-  var players = app.players.fetch();
+  // Unnecessary as it stands, might be needed for future improvements.
+  // var users = app.users.fetch();
+  // var leagues = app.leagues.fetch();
+  // var teams = app.teams.fetch();
+  // var players = app.players.fetch();
   var tactics = app.tactics.fetch();
-  var matches = app.matches.fetch();
 
   // Nicer way to fetch everything together and then start Backbone.history when it's done.
-  $.when(users, leagues, teams, players, tactics, matches).then(function () {
+  $.when(tactics).then(function () {
     app.router = new app.Router();
     Backbone.history.start({pushState: false});
   });
