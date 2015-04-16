@@ -16,11 +16,6 @@ $(document).ready(function() {
     interpolate: /\{\{(.+?)\}\}/g
   };
 
-  // Unnecessary as it stands, might be needed for future improvements.
-  // var users = app.users.fetch();
-  // var leagues = app.leagues.fetch();
-  // var teams = app.teams.fetch();
-  // var players = app.players.fetch();
   var tactics = app.tactics.fetch();
 
   // Nicer way to fetch everything together and then start Backbone.history when it's done.
