@@ -19,7 +19,6 @@ app.DashHomeView = Backbone.View.extend({
       var recentMatches = result.slice(Math.max(result.length - 5, 0));
 
       // Use recentMatches here instead of a direct slice to make the check for the last array item dynamic.
-      // Needs to be cleaned up, this is kinda ugly. Works for now.
       _.each(recentMatches, function(match, i) {
         if(match.home_team_id === app.userTeam.id) {
           if(match === _.last(recentMatches)) {

@@ -11,6 +11,6 @@ app.Team = Backbone.Model.extend({
     total_value: 0,
     bank_balance: 0,
     form_rating: 50,
-    emblem: '' // Can set a default pic here later.
+    emblem: ''
   }
 });

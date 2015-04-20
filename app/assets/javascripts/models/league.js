@@ -6,6 +6,5 @@ app.League = Backbone.Model.extend({
     name: 'league_name',
     nation: 'nation_name',
     size: 4,
-    emblem: '' // Can set a default pic here later.
-  }
+    emblem: ''
 });
