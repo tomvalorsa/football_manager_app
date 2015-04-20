@@ -82,31 +82,34 @@ app.DashHomeView = Backbone.View.extend({
       $('#home-balance').html(accounting.formatMoney($('#home-balance').html()));
       $('#home-value').html(accounting.formatMoney($('#home-value').html()));
 
-
+      // Star Ratings:
       var rating = app.userTeam.overall_rating;
 
+      var customFloor = function(value, roundTo) {
+        return Math.floor(value / roundTo) * roundTo;
+      }
+
+      // Round rating down to the nearest multiple of 10.
+      var rating = customFloor(rating, 10);
+
       $('#star-rating').html(function() {
-        if (rating < 20) {
-          return '<i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
-        } else if (rating < 30) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
-        } else if (rating < 40) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
-        } else if (rating < 50) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
-        } else if (rating < 60) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
-        } else if (rating < 70) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>';
-        } else if (rating < 80) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i>';
-        } else if (rating < 90) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i>';
-        } else if (rating < 100) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i>';
-        } else if (rating === 100) {
-          return '<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>';
+        var result = '';
+        var star = '<i class="fa fa-star"></i>';
+        var halfStar = '<i class="fa fa-star-half-o"></i>';
+        // Might need to add a counter later to fill in blank stars with the right icon.
+        // var emptyStar = '<i class="fa fa-star-o"></i>';
+
+        while (rating > 0) {
+          if (rating - 20 >= 0) {
+            rating = rating - 20;
+            result += star + ' ';
+          } else if (rating - 10 >= 0) {
+            rating = rating - 10;
+            result += halfStar;
+          }
         }
+
+        return result;
       });
 
       // Finds the current user's team's form rating and sets it as a percentage for the green fill div.

@@ -7,4 +7,5 @@ app.League = Backbone.Model.extend({
     nation: 'nation_name',
     size: 4,
     emblem: ''
+  }
 });
