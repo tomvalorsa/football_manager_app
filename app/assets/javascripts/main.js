@@ -19,34 +19,17 @@ $(document).ready(function() {
   var tactics = app.tactics.fetch();
 
   // Nicer way to fetch everything together and then start Backbone.history when it's done.
-  $.when(tactics).then(function () {
+  $.when(tactics).then(function() {
     app.router = new app.Router();
     Backbone.history.start({pushState: false});
   });
 
-  $('#dash-home').click(function(e) {
+  // A clock on the relevant nav item routes to the correct page.
+  // Removes the need for loads of similar events by using a css selector.
+  $('[id^="dash-"]').click(function(e) {
     e.preventDefault();
-    app.router.navigate('home', true);
-  });
-
-  $('#dash-team').click(function(e) {
-    e.preventDefault();
-    app.router.navigate('team', true);
-  });
-
-  $('#dash-league').click(function(e) {
-    e.preventDefault();
-    app.router.navigate('league', true);
-  });
-
-  $('#dash-transfers').click(function(e) {
-    e.preventDefault();
-    app.router.navigate('home', true);
-  });
-
-  $('#dash-settings').click(function(e) {
-    e.preventDefault();
-    app.router.navigate('settings', true);
+    var destination = $(this).attr('id').replace('dash-', '');
+    app.router.navigate(destination, true)
   });
 
   // Sets the current user's team choice upon sign up.
