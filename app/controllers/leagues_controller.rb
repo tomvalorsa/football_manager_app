@@ -16,11 +16,9 @@ class LeaguesController < ApplicationController
     matches_per_gameday = (params[:size].to_i / 2)
 
     # Set default for league emblem in case user doesn't include their own.
-    if params[:emblem] == ''
-      league_emblem = 'http://www.clker.com/cliparts/d/8/9/b/1298268524507354096Trophy.svg.hi.png'
-    else
-      league_emblem = params[:emblem]
-    end
+    league_emblem = params[:emblem] == '' ?
+      'http://www.clker.com/cliparts/d/8/9/b/1298268524507354096Trophy.svg.hi.png' :
+      params[:emblem]
 
     @league = League.create({
       :name => params[:name],
@@ -56,15 +54,9 @@ class LeaguesController < ApplicationController
           position = 'FW'
         end
 
-
-        # Later on this could be based on the league's nationality and I could also paste in the most common names for each country,
-        # not just Italian legends.
         first_array = %w(Francesco Alessandro Andrea Lorenzo Matteo Gabriele Mattia Leonardo Davide Riccardo Federico Luca Giuseppe Marco Tommaso Antonio Simone Samuele Giovanni Pietro Christian Nicolo Alessio Edoardo Diego Filippo Emanuele Daniele Michele Cristian)
         last_array = %w(Pirlo Totti Del\ Piero Doni Barzagli Icardi Valorsa Tomassi Rossi Russo Ferrari Esposito Bianchi Romano Colombo Ricci Marino Greco Bruno Gallo Conti De\ Luca Mancini Costa Giordano Rizzo Lombardi Moretti)
 
-        # This only generates one random number but is reset every time in the loop
-        # Need to eventually make higher ratings more rare.
-        # Could also generate a player potential rating like in FM which could help with player growth with experience from matches.
         attack = rand(59..90)
         defence = rand(59..90)
         age = rand(18..33)
@@ -111,8 +103,6 @@ class LeaguesController < ApplicationController
     @team_names = @teams.map {|team| team.name }
     pairs = RoundRobinTournament.schedule(@team_ids).flatten(1)
     name_pairs = RoundRobinTournament.schedule(@team_names).flatten(1)
-
-    # pairs doesn't work below as it runs out of pairs of teams to supply, it needs twice as much for the home and away fixtures. FOR NOW I will leave it so each team plays each other only once (hence matches_per_league /2). See above comment.
 
     (matches_per_league / 2).times do |i|
       match = Match.create(
