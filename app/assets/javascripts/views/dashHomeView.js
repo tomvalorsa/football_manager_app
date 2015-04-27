@@ -96,8 +96,7 @@ app.DashHomeView = Backbone.View.extend({
         var result = '';
         var star = '<i class="fa fa-star"></i>';
         var halfStar = '<i class="fa fa-star-half-o"></i>';
-        // Might need to add a counter later to fill in blank stars with the right icon.
-        // var emptyStar = '<i class="fa fa-star-o"></i>';
+        var emptyStar = '<i class="fa fa-star-o"></i>';
 
         while (rating > 0) {
           if (rating - 20 >= 0) {
@@ -107,6 +106,11 @@ app.DashHomeView = Backbone.View.extend({
             rating = rating - 10;
             result += halfStar;
           }
+        }
+
+        // Pad the ratings with empty stars.
+        while (result.split('</i>').length != 6) {
+          result += ' ' + emptyStar;
         }
 
         return result;

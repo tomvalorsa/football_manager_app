@@ -34,7 +34,6 @@ class LeaguesController < ApplicationController
         :user_id => nil,
         :name => "Team #{ i + 1 }",
         :overall_rating => nil,
-        # could change this to i
         :league_position => nil,
         :total_value => 0,
         :bank_balance => 30_000_000,
@@ -54,8 +53,13 @@ class LeaguesController < ApplicationController
           position = 'FW'
         end
 
-        first_array = %w(Francesco Alessandro Andrea Lorenzo Matteo Gabriele Mattia Leonardo Davide Riccardo Federico Luca Giuseppe Marco Tommaso Antonio Simone Samuele Giovanni Pietro Christian Nicolo Alessio Edoardo Diego Filippo Emanuele Daniele Michele Cristian)
-        last_array = %w(Pirlo Totti Del\ Piero Doni Barzagli Icardi Valorsa Tomassi Rossi Russo Ferrari Esposito Bianchi Romano Colombo Ricci Marino Greco Bruno Gallo Conti De\ Luca Mancini Costa Giordano Rizzo Lombardi Moretti)
+        if params[:nation] == 'England'
+          first_array = %w(Oliver Jack Harry Charlie James Joshua Alfie Thomas Jacob Ethan Noah Daniel George William Samuel Alexander Oscar Lucas Dylan Max Benjamin)
+          last_array = %w(Smith Anderson Clark Wright Mitchell Johnson Thomas Rodriguez Lopez Perez Williams Jackson Lewis Roberts Jones White Lee Scott Turner)
+        else # keep Italians as default for now.
+          first_array = %w(Francesco Alessandro Andrea Lorenzo Matteo Gabriele Mattia Leonardo Davide Riccardo Federico Luca Giuseppe Marco Tommaso Antonio Simone Samuele Giovanni Pietro Christian Nicolo Alessio Edoardo Diego Filippo Emanuele Daniele Michele Cristian)
+          last_array = %w(Pirlo Totti Del\ Piero Doni Barzagli Icardi Valorsa Tomassi Rossi Russo Ferrari Esposito Bianchi Romano Colombo Ricci Marino Greco Bruno Gallo Conti De\ Luca Mancini Costa Giordano Rizzo Lombardi Moretti)
+        end
 
         attack = rand(59..90)
         defence = rand(59..90)
