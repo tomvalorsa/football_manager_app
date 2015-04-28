@@ -54,8 +54,8 @@ class LeaguesController < ApplicationController
         end
 
         if params[:nation] == 'England'
-          first_array = %w(Oliver Jack Harry Charlie James Joshua Alfie Thomas Jacob Ethan Noah Daniel George William Samuel Alexander Oscar Lucas Dylan Max Benjamin)
-          last_array = %w(Smith Anderson Clark Wright Mitchell Johnson Thomas Rodriguez Lopez Perez Williams Jackson Lewis Roberts Jones White Lee Scott Turner)
+          first_array = %w(Oliver Jack Harry Charlie James Joshua Alfie Thomas Jacob Ethan Noah Daniel George William Samuel Alexander Oscar Lucas Dylan Max Benjamin Dave Mark Luke Tom Geoff Phil Alan Michael Mike Liam)
+          last_array = %w(Smith Anderson Clark Booth Wright Mitchell Johnson Thomas Rodriguez Williams Jackson Lewis Roberts Jones White Lee Scott Turner Mason Kane Cope Thompson Owen Brock Walker Jenkinson Adams)
         else # keep Italians as default for now.
           first_array = %w(Francesco Alessandro Andrea Lorenzo Matteo Gabriele Mattia Leonardo Davide Riccardo Federico Luca Giuseppe Marco Tommaso Antonio Simone Samuele Giovanni Pietro Christian Nicolo Alessio Edoardo Diego Filippo Emanuele Daniele Michele Cristian)
           last_array = %w(Pirlo Totti Del\ Piero Doni Barzagli Icardi Valorsa Tomassi Rossi Russo Ferrari Esposito Bianchi Romano Colombo Ricci Marino Greco Bruno Gallo Conti De\ Luca Mancini Costa Giordano Rizzo Lombardi Moretti)

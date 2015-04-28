@@ -7,6 +7,18 @@ app.players = new app.Players();
 app.tactics = new app.Tactics();
 app.matches = new app.Matches();
 
+app.toggleNav = function() {
+  var $target = $('#bs-example-navbar-collapse-1');
+
+  if ($target.hasClass('collapse')) {
+    $target.slideDown();
+    $target.removeClass('collapse').addClass('collapsed');
+  } else {
+    $target.slideUp();
+    $target.removeClass('collapsed').addClass('collapse');
+  }
+}
+
 
 $(document).ready(function() {
 
@@ -29,7 +41,8 @@ $(document).ready(function() {
   $('[id^="dash-"]').click(function(e) {
     e.preventDefault();
     var destination = $(this).attr('id').replace('dash-', '');
-    app.router.navigate(destination, true)
+    app.router.navigate(destination, true);
+    app.toggleNav();
   });
 
   // Sets the current user's team choice upon sign up.
@@ -43,6 +56,11 @@ $(document).ready(function() {
   // Displays the loading animation while a league is being generated.
   $('#submit-league-form').click(function() {
     $('#loading').css('display', 'inline-block');
+  });
+
+  $('#nav-toggle').click(function(e) {
+    e.preventDefault();
+    app.toggleNav();
   });
 
 });
