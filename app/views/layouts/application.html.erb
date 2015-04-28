@@ -24,10 +24,10 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <% if @current_user && @current_user.team %>
-            <li><a href="#" id="dash-home"><i class="fa fa-futbol-o"></i> Dashboard</a></li>
-            <li><a href="#" id="dash-team"><i class="fa fa-users"></i> Team</a></li>
-            <li><a href="#" id="dash-league"><i class="fa fa-trophy"></i> League</a></li>
-            <li><a href="#" id="dash-settings"><i class="fa fa-wrench"></i> Settings</a></li>
+            <li><a href="#" class="nav-game-link" id="dash-home"><i class="fa fa-futbol-o"></i> Dashboard</a></li>
+            <li><a href="#" class="nav-game-link" id="dash-team"><i class="fa fa-users"></i> Team</a></li>
+            <li><a href="#" class="nav-game-link" id="dash-league"><i class="fa fa-trophy"></i> League</a></li>
+            <li><a href="#" class="nav-game-link" id="dash-settings"><i class="fa fa-wrench"></i> Settings</a></li>
           <% end %>
         </ul>
         <% if @current_user && @current_user.team %>

@@ -64,3 +64,25 @@ body {
   padding: 0.7em;
 }
 
+@media (max-width: 768px) {
+  #players {
+    font-size: 10px;
+  }
+
+  .tactical-options {
+    width: 48%;
+    display: inline-block;
+  }
+
+  #star-rating {
+    text-align: right;
+  }
+
+  #form-rating-value, #team-match-stats {
+    text-align: center;
+  }
+
+  #settings-buttons {
+    margin-top: -10em;
+  }
+}
