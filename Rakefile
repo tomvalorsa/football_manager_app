@@ -170,4 +170,13 @@ namespace :matchday do
       end
     end
   end
+
+  # Need to limit this better.
+  # Also need to make sure the above loop breaks if there are no more matches for that particular league, so that other ones keep running. Some leagues might have more teams/matches etc.
+  # desc "Run half a season"
+  # task :halfseason => :environment do
+  #   loop do
+  #     Rake::Task['matchday:run'].invoke
+  #   end
+  # end
 end
